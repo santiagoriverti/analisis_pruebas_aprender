@@ -43,6 +43,16 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
   - Chequeos: RA shapes OK; APRENDER 18.721.597 filas, `valor` sin nulos ni negativos;
     departamento nulo 240.946 (esperado); Cargos Bis 7 filas con ambito nulo (del origen).
   - Creado `ESTADO.md` (handoff). README/memoria actualizados. Todo commiteado y pusheado.
+- Trabajo sesión 5 (notebook 01 análisis):
+  - `01_analisis.ipynb` (16 celdas, corre en Colab/local, 0 errores, 4 gráficos).
+  - Marco de **comparabilidad**: RA = series de tiempo (2011-2025); APRENDER = solo dentro de la
+    misma `(nivel, grado, cobertura)`. Cohortes comparables: Primaria 6° Censal (2021/23/25),
+    Secundaria 5-6° Censal (2019/22/24). Escala 4 niveles salvo Primaria 3° 2024 (Lector/Nivel I-V).
+  - Funciones: `cargar_ra/aprender/desempeno`, `harmonizar_nivel`+`ORDEN4`, `desempeno_pct(df,group)`,
+    `serie_cohorte`, `norm_geo`+`CROSSWALK_PROV` (CABA y TdF difieren de nombre entre RA y APRENDER).
+  - 4 tracks: (A) series RA, (B) cohortes APRENDER, (C) brechas sector/ámbito, (D) cruce RA↔APRENDER
+    por depto (271 matcheados, corr % privado vs % Satisf+Avanz ≈ 0,55).
+  - Gotcha pandas: `str.split(pat, n=1)` requiere `n=` keyword.
 
 ## Arquitectura de consolidación (clave)
 
