@@ -16,7 +16,11 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 ## Estado actual (2026-08-31)
 
-- Repo con documentación + **notebook 00 de consolidación funcionando end-to-end**.
+> **Para retomar en otra PC/sesión: leer `ESTADO.md`** (handoff completo: instalación, ejecución,
+> dónde quedan los resultados, métricas de referencia, gotchas y próximos pasos).
+> **Firma de referencia de la consolidación: `c9740263478b`** (validada en local y en Colab).
+
+- Repo con documentación + **notebook 00 de consolidación funcionando end-to-end y validado**.
 - Trabajo sesión 1 (setup):
   - `.gitignore`, `README.md`, `CONTEXTO.md`, `.claude/memory/project.md`.
   - `.sav` de 117 MB excluido de git.
@@ -34,6 +38,11 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
     `parquet/` (para notebook 01) + `excel/` (legible). Función `exportar_resultados(origen, destino)`.
     Umbral xlsx/csv = 200k filas (Cargos Bis y Matricula por edad → CSV; resto xlsx;
     APRENDER completo solo en parquet, su parte legible = `aprender_desempenos.xlsx`, 109.473 filas).
+- Trabajo sesión 4 (auditoría + traspaso):
+  - Auditados los parquet descargados del Drive → íntegros; firma recomputada = `c9740263478b`.
+  - Chequeos: RA shapes OK; APRENDER 18.721.597 filas, `valor` sin nulos ni negativos;
+    departamento nulo 240.946 (esperado); Cargos Bis 7 filas con ambito nulo (del origen).
+  - Creado `ESTADO.md` (handoff). README/memoria actualizados. Todo commiteado y pusheado.
 
 ## Arquitectura de consolidación (clave)
 
@@ -78,9 +87,11 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 ## Pendiente / próximos pasos
 
-- [x] Notebook 00 de consolidación (hecho, corre end-to-end).
+- [x] Notebook 00 de consolidación (hecho, corre end-to-end y validado en Colab).
 - [x] Diccionario maestro con significado/unidades de cada variable.
-- [ ] Commit + push de notebook 00, requirements, docs y referencias livianas.
-- [ ] Definir objetivo analítico y armar notebook 01 de análisis.
+- [x] Colab + guardado en Drive + verificación (firma) + auditoría de datos.
+- [x] Documentación de traspaso (`ESTADO.md`) y commits/push.
+- [ ] Definir objetivo analítico y armar **notebook 01 de análisis** (leer desde `pruebas_aprender/parquet/`).
 - [ ] Evaluar series comparables donde el universo lo permita (cuidado: operativo cambia por año).
+- [ ] Opcional: afinar clasificación de variables `tipo_variable == 'otro'` (~2,1M filas).
 - [ ] Opcional: integrar microdatos `.sav` 2024 (requiere `pyreadstat`, no instalado).

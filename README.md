@@ -15,6 +15,10 @@ en Parquet (para el notebook 01) y en Excel/CSV (para leer).
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
+> **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
+> cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
+> Estado: consolidación **completa y validada** (firma de referencia `c9740263478b`). Sigue: notebook 01 de análisis.
+
 ---
 
 ## Objetivo
@@ -46,6 +50,7 @@ Para correrlo sin instalar nada, usá el badge de Colab de arriba
 ```
 analisis_pruebas_aprender/
 ├── README.md                  # este archivo
+├── ESTADO.md                  # traspaso: estado, cómo retomar, próximos pasos
 ├── CONTEXTO.md                # contexto de datos: familias, convenciones, diccionarios
 ├── requirements.txt           # dependencias Python
 ├── .gitignore                 # excluye la base .sav de 117 MB y la salida pesada regenerable
@@ -54,6 +59,7 @@ analisis_pruebas_aprender/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
 ├── datos_consolidados/        # SALIDA del notebook 00 (regenerable; datos pesados en .gitignore)
+│   ├── README.md              # esquemas y uso de la salida
 │   ├── diccionario_maestro.xlsx
 │   ├── catalogo_archivos.csv
 │   ├── ra/ra_<base>.parquet            # familia RA (ancho)
