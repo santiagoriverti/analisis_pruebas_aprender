@@ -3,6 +3,14 @@
 Consolidación y procesamiento de las bases de datos de las **Pruebas Aprender** y de la
 información estadística educativa de la Secretaría de Educación de la Nación (Argentina).
 
+**▶ Ejecutá el notebook de consolidación en la nube (sin instalar nada):**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb)
+
+En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**. El notebook clona este
+repositorio, procesa todo y al final imprime un bloque de **verificación** (con una `firma`) que
+podés compartir para confirmar que compiló sin errores.
+
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
@@ -26,6 +34,9 @@ expresa cada variable) y los consolida en `datos_consolidados/`:
 
 Se usa Parquet porque varias tablas superan el límite de Excel (1.048.576 filas). El diccionario
 maestro sí se entrega en Excel. Instalar dependencias con `pip install -r requirements.txt`.
+
+Para correrlo sin instalar nada, usá el badge de Colab de arriba
+([abrir directo](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb)).
 
 ---
 
