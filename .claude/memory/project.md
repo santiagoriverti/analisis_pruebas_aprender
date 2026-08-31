@@ -26,6 +26,14 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
   - `requirements.txt` (pandas, pyarrow, openpyxl, python-calamine, jupyter).
   - Salida pesada regenerable en `.gitignore`; se versionan `diccionario_maestro.xlsx` y
     `catalogo_archivos.csv` + `datos_consolidados/README.md`.
+- Trabajo sesión 3 (Colab + Drive):
+  - Badge "Open in Colab" en README; celda 0 de bootstrap (clona repo en Colab).
+  - Celda 9 de verificación con firma reproducible. **Firma de referencia: `c9740263478b`**
+    (coincidió en Colab con Python/pandas/pyarrow distintos → consolidación determinística).
+  - Celda 10: al correr en Colab, monta Drive y guarda en **Mi unidad/pruebas_aprender**:
+    `parquet/` (para notebook 01) + `excel/` (legible). Función `exportar_resultados(origen, destino)`.
+    Umbral xlsx/csv = 200k filas (Cargos Bis y Matricula por edad → CSV; resto xlsx;
+    APRENDER completo solo en parquet, su parte legible = `aprender_desempenos.xlsx`, 109.473 filas).
 
 ## Arquitectura de consolidación (clave)
 

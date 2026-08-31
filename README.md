@@ -8,8 +8,9 @@ información estadística educativa de la Secretaría de Educación de la Nació
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb)
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**. El notebook clona este
-repositorio, procesa todo y al final imprime un bloque de **verificación** (con una `firma`) que
-podés compartir para confirmar que compiló sin errores.
+repositorio, procesa todo, imprime un bloque de **verificación** (con una `firma`) para confirmar que
+compiló sin errores, y **guarda los resultados en tu Google Drive** (*Mi unidad/`pruebas_aprender`*),
+en Parquet (para el notebook 01) y en Excel/CSV (para leer).
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion

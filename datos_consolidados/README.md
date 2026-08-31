@@ -38,3 +38,26 @@ desemp  = desemp[desemp.tipo_variable == 'desempeño']
 
 > **Unidades:** APRENDER = conteos ponderados (factor de expansión), no porcentajes. RA = conteos absolutos.
 > No todas las series son comparables entre años (el operativo cambia de nivel/grado/cobertura).
+
+## Guardado en Google Drive (al correr en Colab)
+
+La última celda del notebook (sección 10) guarda una copia en **Mi unidad/`pruebas_aprender`** con dos formatos:
+
+```
+pruebas_aprender/
+├── parquet/                 # eficiente/tipado — para el notebook 01
+│   ├── ra/ra_<base>.parquet
+│   ├── aprender_long/anio=YYYY/*.parquet
+│   └── diccionario_*.parquet
+├── excel/                   # legible por humanos
+│   ├── diccionario_maestro.xlsx
+│   ├── ra_<base>.xlsx        # tablas ≤ 200k filas
+│   ├── ra_cargos_bis.csv     # > límite práctico de Excel → CSV
+│   ├── ra_matricula_por_edad.csv
+│   └── aprender_desempenos.xlsx   # niveles de desempeño por año/área/jurisdicción
+└── catalogo_archivos.csv
+```
+
+Las tablas que superan las 200.000 filas (Cargos Bis, Matrícula por edad) se exportan a **CSV** (abre en
+Excel, sin límite de filas); el resto va a `.xlsx`. El dataset completo de APRENDER (~19 M filas) vive
+solo en Parquet; su parte legible es `aprender_desempenos.xlsx`.
