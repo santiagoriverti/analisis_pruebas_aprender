@@ -110,6 +110,9 @@ Enfoque elegido por el usuario: **trayectorias descriptivas** (evolución tempor
   tasa de abandono (salidos sin pase); cargos docentes. Todas series continuas.
 - **B — Desempeño APRENDER (cohortes comparables):** Primaria 6° Censal (2021/23/25) y Secundaria
   5-6° Censal (2019/22/24), % por nivel en Lengua y Matemática; y % Satisf+Avanz por sector.
+- Los gráficos RA incluyen la **trayectoria Total** (línea negra punteada). Al finalizar, el notebook
+  guarda todos los gráficos a **300 dpi** en `graficos_trayectorias/` y (en Colab) descarga un `.zip`.
+- Badges de Colab en el README para ambos notebooks (00 y 01).
 
 Funciones clave: `cargar_ra/cargar_aprender/cargar_desempeno`, `suma_anios`+`tasa` (RA, rangos
 `PRIM=1-6`, `SEC=7-12`), `harmonizar_nivel`+`ORDEN4`, `desempeno_pct(df, group_cols)`, `serie_cohorte(...)`.

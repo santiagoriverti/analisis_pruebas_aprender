@@ -58,6 +58,10 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
     `desempeno_pct(df,group)`, `serie_cohorte`.
   - Gotcha pandas: `str.split(pat, n=1)` requiere `n=` keyword. (El cruce geográfico quedó probado
     aparte: norm_geo + CROSSWALK_PROV {CABA, TdF}; ~271 deptos matchean — guardado para más adelante.)
+  - Agregado: trayectoria **Total** (línea negra punteada) en gráficos RA; `guardar(fig, nombre)` que
+    exporta cada gráfico a **300 dpi** en `graficos_trayectorias/`; celda final que zippea y (en Colab)
+    descarga con `google.colab.files.download`. Badges de Colab de ambos notebooks en README.
+    `graficos_trayectorias/` y `.zip` en `.gitignore`.
 
 ## Arquitectura de consolidación (clave)
 

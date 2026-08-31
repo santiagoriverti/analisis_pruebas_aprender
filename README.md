@@ -3,14 +3,18 @@
 Consolidación y procesamiento de las bases de datos de las **Pruebas Aprender** y de la
 información estadística educativa de la Secretaría de Educación de la Nación (Argentina).
 
-**▶ Ejecutá el notebook de consolidación en la nube (sin instalar nada):**
+**▶ Ejecutá los notebooks en la nube (sin instalar nada):**
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb)
+| Notebook | Abrir en Colab |
+|---|---|
+| **00 · Consolidación** (arma el dataset) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb) |
+| **01 · Trayectorias** (grafica la evolución) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb) |
 
-En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**. El notebook clona este
-repositorio, procesa todo, imprime un bloque de **verificación** (con una `firma`) para confirmar que
-compiló sin errores, y **guarda los resultados en tu Google Drive** (*Mi unidad/`pruebas_aprender`*),
-en Parquet (para el notebook 01) y en Excel/CSV (para leer).
+En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
+- El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
+  (*Mi unidad/`pruebas_aprender`*), en Parquet (para el 01) y en Excel/CSV (para leer).
+- El **01** grafica las trayectorias y, al terminar, **descarga los gráficos en 300 dpi** (zip).
+  Requiere haber corrido antes el **00** (lee de tu Drive).
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
