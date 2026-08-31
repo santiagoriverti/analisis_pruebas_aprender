@@ -16,15 +16,33 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 ## Estado actual (2026-08-31)
 
-- Repo recién inicializado. Solo contenía `README.md` mínimo + carpeta `resultados_aprender/`
-  con los datos crudos (161 archivos, 520 MB).
-- Trabajo de esta sesión:
-  - `.gitignore` creado → excluye `Base_publica_Ap2024.sav` (117 MB, supera el límite de
-    100 MB de GitHub) + artefactos Python/Jupyter/OS.
-  - `README.md` reescrito con estructura, familias de datos y cobertura por año.
-  - `CONTEXTO.md` creado con convenciones de nombrado y decisiones de datos.
-  - `.claude/memory/project.md` (este archivo) creado.
-- Todavía **no hay código de consolidación ni notebooks**. Los datos están en crudo.
+- Repo con documentación + **notebook 00 de consolidación funcionando end-to-end**.
+- Trabajo sesión 1 (setup):
+  - `.gitignore`, `README.md`, `CONTEXTO.md`, `.claude/memory/project.md`.
+  - `.sav` de 117 MB excluido de git.
+- Trabajo sesión 2 (consolidación):
+  - `00_consolidacion.ipynb` (18 celdas): cataloga 156 xlsx, arma diccionario maestro y
+    consolida en `datos_consolidados/`. Corre en ~4 min con motor `calamine`.
+  - `requirements.txt` (pandas, pyarrow, openpyxl, python-calamine, jupyter).
+  - Salida pesada regenerable en `.gitignore`; se versionan `diccionario_maestro.xlsx` y
+    `catalogo_archivos.csv` + `datos_consolidados/README.md`.
+
+## Arquitectura de consolidación (clave)
+
+- **Motor de lectura:** `pandas.read_excel(..., engine='calamine')` — 5-10x más rápido que openpyxl.
+  openpyxl no terminaba de leer los APRENDER de 1000+ columnas; calamine lee el mayor en ~2.4s.
+- **Familia RA (7 bases × 15 años):** formato **ANCHO**, 1 parquet por base, años apilados (`anio`).
+  Claves `provincia/departamento/sector/ambito` (+ extras Cargos Bis y Matricula por edad).
+  Ojo: 2024 usa `Departamento` capitalizado → `_norm_keys()` lo normaliza. Columnas crecen en años
+  recientes (union) → `pd.concat(sort=False)`. `coerce_for_parquet()` homogeneiza tipos.
+- **Familia APRENDER (48 archivos):** formato **LARGO/tidy** particionado por año. Cada archivo se
+  melt-ea; se descartan celdas vacías; se clasifica `tipo_variable` (desempeño/contexto/nse/
+  nivel_educativo_hogar/otro). Claves: `cod_provincia`↔`jurisdiccion`; **algunos sin departamento**
+  (nivel provincia). Total ~18,7 M filas.
+- **Diccionario APRENDER:** cada columna `pregunta_opción` mapea a etiqueta `"pregunta - opción"`;
+  se separa con `str.rsplit(' - ', n=1)`. 15 hojas por año/nivel, ~10.775 definiciones.
+- **Unidades:** APRENDER = conteos PONDERADOS (factor de expansión). RA = conteos ABSOLUTOS.
+- **Por qué Parquet:** Cargos Bis 1,46M filas y APRENDER largo ~19M superan el límite de Excel (1,05M).
 
 ## Datos (resumen)
 
@@ -52,8 +70,9 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 ## Pendiente / próximos pasos
 
-- [ ] Confirmar con el usuario el objetivo analítico concreto (¿qué se quiere consolidar/medir?).
-- [ ] Primer commit con README, .gitignore, CONTEXTO y memoria; push a `main`.
-- [ ] Diseñar script/notebook de consolidación (parser de nombres → tabla larga tidy).
-- [ ] Cargar y explorar diccionarios de variables para mapear columnas entre años.
-- [ ] Evaluar armado de series comparables donde el universo lo permita.
+- [x] Notebook 00 de consolidación (hecho, corre end-to-end).
+- [x] Diccionario maestro con significado/unidades de cada variable.
+- [ ] Commit + push de notebook 00, requirements, docs y referencias livianas.
+- [ ] Definir objetivo analítico y armar notebook 01 de análisis.
+- [ ] Evaluar series comparables donde el universo lo permita (cuidado: operativo cambia por año).
+- [ ] Opcional: integrar microdatos `.sav` 2024 (requiere `pyreadstat`, no instalado).

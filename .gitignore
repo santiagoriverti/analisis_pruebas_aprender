@@ -11,6 +11,15 @@ resultados_aprender/Base_publica_Ap2024.sav
 # *.sav
 
 # ==============================================================
+# Salida consolidada (regenerable con 00_consolidacion.ipynb)
+# Se versionan solo las referencias livianas; los datos pesados no.
+# ==============================================================
+datos_consolidados/ra/
+datos_consolidados/aprender_long/
+datos_consolidados/*.parquet
+# (se conservan diccionario_maestro.xlsx, catalogo_archivos.csv y README.md)
+
+# ==============================================================
 # Python / Jupyter
 # ==============================================================
 __pycache__/

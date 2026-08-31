@@ -81,6 +81,18 @@ Los resultados suelen expresarse en **niveles de desempeño**:
 
 ## 6. Herramientas sugeridas
 
-- `.xlsx` → `pandas.read_excel` (motor `openpyxl`).
-- `.sav` → `pyreadstat.read_sav` (devuelve datos + metadatos con etiquetas) o `pandas.read_spss`.
+- `.xlsx` → `pandas.read_excel(..., engine='calamine')` (5-10x más rápido que openpyxl; necesario
+  para los APRENDER de 1000+ columnas).
+- `.sav` → `pyreadstat.read_sav` (datos + metadatos con etiquetas) o `pandas.read_spss`.
 - Para outputs grandes, usar `ctx_execute` (context-mode) en vez de imprimir en consola.
+
+## 7. Consolidación (notebook 00)
+
+El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
+
+- **RA → ancho** (7 parquet, un base por archivo, años apilados). Conteos absolutos.
+- **APRENDER → largo/tidy** (particionado por año). Conteos ponderados; columna `tipo_variable`
+  distingue `desempeño` / `contexto` / `nse` / `nivel_educativo_hogar` / `otro`.
+- **`diccionario_maestro.xlsx`** — significado y unidad de cada variable (join por `variable`/`campo`).
+
+Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.

@@ -1,0 +1,6 @@
+# Dependencias para el notebook 00_consolidacion.ipynb
+pandas>=2.0
+pyarrow>=14
+openpyxl>=3.1
+python-calamine>=0.2   # lectura rápida de .xlsx (5-10x vs openpyxl)
+jupyter

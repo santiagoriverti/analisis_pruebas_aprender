@@ -14,6 +14,19 @@ Reunir en un único repositorio las bases públicas de evaluación (APRENDER) y 
 estadísticas educativas (matrícula, cargos, población, trayectoria) para su consolidación,
 limpieza y análisis a lo largo del tiempo (2011–2025).
 
+## Consolidación (notebook 00)
+
+El notebook [`00_consolidacion.ipynb`](00_consolidacion.ipynb) lee los 156 `.xlsx` de
+`resultados_aprender/`, los cataloga, construye un **diccionario maestro** (qué significa y cómo se
+expresa cada variable) y los consolida en `datos_consolidados/`:
+
+- **Familia RA** (estadística educativa, 7 bases × 15 años) → 7 Parquet **anchos**, conteos absolutos.
+- **Familia APRENDER** (evaluación, 48 archivos) → Parquet **largo/tidy** particionado por año;
+  valores = conteos ponderados de estudiantes (factor de expansión).
+
+Se usa Parquet porque varias tablas superan el límite de Excel (1.048.576 filas). El diccionario
+maestro sí se entrega en Excel. Instalar dependencias con `pip install -r requirements.txt`.
+
 ---
 
 ## Estructura del repositorio
@@ -22,10 +35,17 @@ limpieza y análisis a lo largo del tiempo (2011–2025).
 analisis_pruebas_aprender/
 ├── README.md                  # este archivo
 ├── CONTEXTO.md                # contexto de datos: familias, convenciones, diccionarios
-├── .gitignore                 # excluye la base .sav de 117 MB (supera el límite de GitHub)
+├── requirements.txt           # dependencias Python
+├── .gitignore                 # excluye la base .sav de 117 MB y la salida pesada regenerable
+├── 00_consolidacion.ipynb     # notebook que consolida todo el dataset
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
+├── datos_consolidados/        # SALIDA del notebook 00 (regenerable; datos pesados en .gitignore)
+│   ├── diccionario_maestro.xlsx
+│   ├── catalogo_archivos.csv
+│   ├── ra/ra_<base>.parquet            # familia RA (ancho)
+│   └── aprender_long/anio=YYYY/*.parquet  # familia APRENDER (largo)
 └── resultados_aprender/       # datos crudos descargados de la fuente oficial
     ├── 20XX Base APRENDER ... .xlsx      # resultados de las pruebas (2016–2025)
     ├── 20XX Caracteristicas - agregada.xlsx
