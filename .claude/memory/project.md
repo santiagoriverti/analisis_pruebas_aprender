@@ -100,9 +100,12 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 ## Flujo de trabajo
 
-- `.xlsx` → `pandas.read_excel`. `.sav` → `pyreadstat.read_sav`.
+- `.xlsx` → `pandas.read_excel(engine='calamine')`. `.sav` → `pyreadstat.read_sav`.
 - Outputs grandes → `ctx_execute` (context-mode) en vez de consola.
 - Commits: usuario Santiago Riverti, sin `Co-Authored-By`.
+- **Uso normal (Colab):** el 00 se corre **una vez** (guarda en Drive, persistente); el 01 solo
+  **monta Drive y lee** (no reconsolida). Re-correr el 00 solo si se borra la carpeta del Drive,
+  se agregan datos nuevos, o cambia la lógica de consolidación. Cada apertura pide autorizar Drive.
 
 ## Pendiente / próximos pasos
 

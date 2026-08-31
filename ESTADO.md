@@ -69,6 +69,14 @@ mat     = pd.read_parquet(f'{BASE}/ra/ra_matricula.parquet')
 ap_2024 = pd.read_parquet(f'{BASE}/aprender_long', filters=[('anio','==',2024)])
 ```
 
+### Flujo de trabajo día a día (importante)
+El **00 se corre una sola vez**: guarda en Google Drive, que **es persistente** (sobrevive al cierre
+de la VM de Colab). El **01 solo monta el Drive y lee** — no re-consolida. En el uso normal se abre el
+**01**, *Ejecutar todo*, se autoriza Drive, se ven las trayectorias y se descargan los gráficos.
+**Re-correr el 00 solo si:** (1) se borró/movió la carpeta `pruebas_aprender` del Drive; (2) se agregan
+datos nuevos a `resultados_aprender/`; (3) se cambió la lógica de consolidación. Cada apertura en Colab
+pide autorizar Drive (es por sesión; no reconsolida).
+
 ## 5. Modelo de datos (lo esencial)
 
 - **RA → ancho.** 7 parquet (uno por base), años 2011–2025 apilados en `anio`.
@@ -145,3 +153,4 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 | 3 | 2026-08-31 | Colab (badge + bootstrap), celda de verificación (firma), guardado en Drive (parquet + excel). |
 | 4 | 2026-08-31 | Auditoría de los datos descargados del Drive (íntegros, firma `c9740263478b`); documentación de traspaso. |
 | 5 | 2026-08-31 | `01_analisis.ipynb`: **trayectorias descriptivas** (matrícula, repitencia, abandono, cargos; desempeño APRENDER por cohorte y sector). Sin econometría, por pedido del usuario. |
+| 6 | 2026-08-31 | Notebook 01: línea **Total** en gráficos RA, export de gráficos a **300 dpi** + descarga zip en Colab, badges de Colab (00 y 01) en README. Aclarado el flujo (00 una vez → Drive persistente; 01 solo lee). |
