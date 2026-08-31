@@ -43,18 +43,17 @@ maestro sí se entrega en Excel. Instalar dependencias con `pip install -r requi
 Para correrlo sin instalar nada, usá el badge de Colab de arriba
 ([abrir directo](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb)).
 
-## Análisis (notebook 01)
+## Trayectorias (notebook 01)
 
-El notebook [`01_analisis.ipynb`](01_analisis.ipynb) consume el dataset consolidado y parte de un
-principio de **comparabilidad**:
+El notebook [`01_analisis.ipynb`](01_analisis.ipynb) muestra la **evolución en el tiempo** (descriptiva)
+de las variables más relevantes, respetando la **comparabilidad**:
 
-- **RA (2011–2025)** se releva igual todos los años → **series de tiempo válidas** (matrícula, trayectoria,
-  cargos, población, infraestructura).
+- **RA (2011–2025)** se releva igual todos los años → **series de tiempo válidas**. Trayectorias incluidas:
+  matrícula inicial por nivel, tasa de repitencia, tasa de abandono, cargos docentes.
 - **APRENDER** cambia de grado/nivel/cobertura cada año → **solo se compara dentro de la misma cohorte**:
-  Primaria 6° Censal (2021/2023/2025) y Secundaria 5-6° Censal (2019/2022/2024); el resto es transversal.
+  Primaria 6° Censal (2021/2023/2025) y Secundaria 5-6° Censal (2019/2022/2024). Trayectorias de desempeño
+  (% por nivel) en Lengua y Matemática, y por sector (Estatal vs Privado).
 
-Incluye funciones reutilizables y 4 tracks de ejemplo: (A) series RA, (B) cohortes APRENDER comparables,
-(C) brechas por sector/ámbito, (D) cruce RA↔APRENDER por geografía.
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb).
 
 ---
@@ -69,7 +68,7 @@ analisis_pruebas_aprender/
 ├── requirements.txt           # dependencias Python
 ├── .gitignore                 # excluye la base .sav de 117 MB y la salida pesada regenerable
 ├── 00_consolidacion.ipynb     # notebook que consolida todo el dataset
-├── 01_analisis.ipynb          # notebook de análisis (comparabilidad, series, brechas, cruces)
+├── 01_analisis.ipynb          # notebook de trayectorias (evolución temporal descriptiva)
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo

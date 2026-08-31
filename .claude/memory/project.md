@@ -43,16 +43,21 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
   - Chequeos: RA shapes OK; APRENDER 18.721.597 filas, `valor` sin nulos ni negativos;
     departamento nulo 240.946 (esperado); Cargos Bis 7 filas con ambito nulo (del origen).
   - Creado `ESTADO.md` (handoff). README/memoria actualizados. Todo commiteado y pusheado.
-- Trabajo sesión 5 (notebook 01 análisis):
-  - `01_analisis.ipynb` (16 celdas, corre en Colab/local, 0 errores, 4 gráficos).
+- Trabajo sesión 5 (notebook 01 = TRAYECTORIAS):
+  - **El usuario pidió trayectorias descriptivas, NO econometría.** Se reenfocó el notebook (se sacó
+    el cruce RA↔APRENDER con correlación/scatter). `01_analisis.ipynb` = 22 celdas, 0 errores, 6 gráficos.
   - Marco de **comparabilidad**: RA = series de tiempo (2011-2025); APRENDER = solo dentro de la
-    misma `(nivel, grado, cobertura)`. Cohortes comparables: Primaria 6° Censal (2021/23/25),
-    Secundaria 5-6° Censal (2019/22/24). Escala 4 niveles salvo Primaria 3° 2024 (Lector/Nivel I-V).
-  - Funciones: `cargar_ra/aprender/desempeno`, `harmonizar_nivel`+`ORDEN4`, `desempeno_pct(df,group)`,
-    `serie_cohorte`, `norm_geo`+`CROSSWALK_PROV` (CABA y TdF difieren de nombre entre RA y APRENDER).
-  - 4 tracks: (A) series RA, (B) cohortes APRENDER, (C) brechas sector/ámbito, (D) cruce RA↔APRENDER
-    por depto (271 matcheados, corr % privado vs % Satisf+Avanz ≈ 0,55).
-  - Gotcha pandas: `str.split(pat, n=1)` requiere `n=` keyword.
+    misma `(nivel, grado, cobertura)`. Cohortes: Primaria 6° Censal (2021/23/25), Secundaria 5-6°
+    Censal (2019/22/24). Escala 4 niveles salvo Primaria 3° 2024 (Lector/Nivel I-V).
+  - Trayectorias RA (desde base *Trayectoria*): matrícula inicial por nivel (`inicial_X`), tasa de
+    repitencia (`nopromo_X/inicial_X`), abandono (`ssp_X/inicial_X`), cargos (*Cargos Bis* `total`).
+    Rangos año de estudio: PRIM=1-6, SEC=7-12. Datos: repitencia sec 18,3%(2011)→10,2%(2025);
+    matrícula sec 3,6M→4,2M; cargos 8,2M→11,2M.
+  - Trayectorias APRENDER: `serie_cohorte()` + `desempeno_pct()`; % por nivel y por sector.
+  - Funciones: `cargar_ra/aprender/desempeno`, `suma_anios`+`tasa`, `harmonizar_nivel`+`ORDEN4`,
+    `desempeno_pct(df,group)`, `serie_cohorte`.
+  - Gotcha pandas: `str.split(pat, n=1)` requiere `n=` keyword. (El cruce geográfico quedó probado
+    aparte: norm_geo + CROSSWALK_PROV {CABA, TdF}; ~271 deptos matchean — guardado para más adelante.)
 
 ## Arquitectura de consolidación (clave)
 
