@@ -27,7 +27,8 @@ El notebook `00_consolidacion.ipynb` deja todo listo para analizar; **está comp
 | Celda de verificación con firma reproducible | ✅ |
 | **Auditoría de los datos entregados** (parquet descargado del Drive) | ✅ íntegro |
 | `01_analisis.ipynb` — trayectorias descriptivas (RA + cohortes APRENDER) | ✅ corre, 0 errores, 7 gráficos (revisado 2026-09-11) |
-| Listado de variables disponibles + significado (sección D del 01) | ✅ |
+| Listado de variables disponibles + significado (secciones C–E del 01 + `variables_disponibles.xlsx`) | ✅ |
+| Datos del Drive re-consolidados en Colab y auditados (firma `bdedd07f319c`, 18 tablas idénticas al local) | ✅ |
 | Más trayectorias / cortes geográficos | ⏳ opcional |
 
 **Firma de referencia de la consolidación: `bdedd07f319c`** (desde 2026-09-11)
@@ -142,9 +143,14 @@ Enfoque elegido por el usuario: **trayectorias descriptivas** (evolución tempor
 - **A — Estadística educativa (RA, 2011–2025):** A1 matrícula inicial por nivel; A2 tasa de repitencia y de
   abandono (salidos sin pase) — ambas **por ciclo lectivo** (t−1); A3 **cargos docentes por nivel** (`tipo=='Cargos'`,
   632 mil en 2011 → 890 mil en 2025) + tabla de todos los tipos; A4 horas cátedra y módulos (millones).
-- **D — Variables disponibles:** imprime ~5.900 líneas: RA (744 columnas en 7 bases, series numeradas agrupadas,
-  años con dato) y APRENDER (5.571 variables / 1.591 preguntas con años, códigos y opciones). Deja
-  `variables_ra`, `variables_aprender` y `buscar_variable(texto)`. Tarda ~30–60 s.
+- **C — Catálogo de variables:** arma RA (744 columnas en 7 bases, series numeradas agrupadas, años con dato) y
+  APRENDER (5.571 variables / 1.591 preguntas con años, códigos y opciones). Deja `variables_ra`,
+  `variables_aprender`, `preguntas_aprender` y `buscar_variable(texto)`; guarda `variables_disponibles.xlsx`
+  (hojas RA_columnas, APRENDER_preguntas, APRENDER_variables) y `.txt` en `graficos_trayectorias/`. ~30–60 s.
+- **D — Descarga:** zip con los 7 gráficos + `variables_disponibles.xlsx/.txt`.
+- **E — Listado impreso por partes** (E.1 RA 500 líneas · E.2 APRENDER general 134 · E.3 contexto ≤2019 2.284 ·
+  E.4 contexto ≥2021 2.216 · E.5 otro + resumen 785). **Colab corta la salida de una celda a ~5.000 líneas**:
+  por eso no se imprime en una sola celda.
 - **B — Desempeño APRENDER (cohortes comparables):** Primaria 6° Censal (2016/18/21/23/25) y Secundaria
   5-6° Censal (2016/17/19/22/24), % por nivel en Lengua y Matemática; y % Satisf+Avanz por sector
   (Primaria 6° Matemática). Años de cada cohorte en `ANIOS_PRIM6` / `ANIOS_SEC56` (celda de funciones).
@@ -187,3 +193,4 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 | 6 | 2026-08-31 | Notebook 01: línea **Total** en gráficos RA, export de gráficos a **300 dpi** + descarga zip en Colab, badges de Colab (00 y 01) en README. Aclarado el flujo (00 una vez → Drive persistente; 01 solo lee). |
 | 7 | 2026-09-11 | Revisión de resultados del 01 contra los datos: **A3 estaba mal** (sumaba horas/módulos/suplentes → 11,2 M; corregido a cargos docentes por nivel, ~883 mil en 2024) + nuevo A4 horas y módulos; A1/A2 rotulados por **ciclo lectivo** (Trayectoria t = ciclo t−1); nota de Avanzado vacío en Mat. Sec. 2022; fix warning de pandas; **sección D: listado completo de variables y su significado**. 00 sin cambios (firma igual). |
 | 8 | 2026-09-11 | **00: nivel/grado completados en 2016–2018** (2016/17 Primaria 6 grado y Secundaria 5-6 año; 2018 Primaria 6 grado; `3grado`→`3 grado`), verificado por edad modal con assert en la sección 8; catálogo con `nivel_grado_inferido`; firma incluye operativos → **nueva firma `bdedd07f319c`**. 01: cohortes ampliadas a Primaria 6° 2016/18/21/23/25 y Secundaria 5-6° 2016/17/19/22/24 (`ANIOS_PRIM6`/`ANIOS_SEC56`). Resultados 2016–2018 coinciden con los publicados (p. ej. Lengua 6° 2018 = 75,3%). Requiere re-correr el 00 en Colab. |
+| 9 | 2026-09-11 | Usuario re-corrió 00 y 01 en Colab: firma `bdedd07f319c` y control de grado OK; **auditoría del Drive** (catálogo idéntico, 57 parquet sin restos viejos, 18 tablas con contenido idéntico al local, Excel con grados corregidos). Colab **truncó** el listado de variables (>5.000 líneas) → 01 reestructurado: C arma catálogo + `variables_disponibles.xlsx/.txt`, D zip, E imprime en 5 celdas. |

@@ -59,7 +59,8 @@ de las variables más relevantes, respetando la **comparabilidad**:
   Primaria 6° Censal (2016/2018/2021/2023/2025) y Secundaria 5-6° Censal (2016/2017/2019/2022/2024). Trayectorias de desempeño
   (% por nivel) en Lengua y Matemática, y por sector (Estatal vs Privado).
 - **Al final imprime el listado completo de variables disponibles y su significado** (RA y APRENDER, con años
-  de disponibilidad) y deja `buscar_variable(texto)` para buscar por palabra.
+  de disponibilidad), por partes para que Colab no lo corte, y lo incluye en el zip de descarga como
+  `variables_disponibles.xlsx` (filtrable) y `.txt`. Deja `buscar_variable(texto)` para buscar por palabra.
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb).
 

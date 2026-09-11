@@ -86,6 +86,11 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
     % Satisf+Avanz: Prim 6° Lengua 66.8/75.3/70.9/66.4/76.9, Mat 58.5/57.4/55.5/51.4/55.0;
     Sec 5-6° Lengua 53.65/62.53/61.76/56.94/56.89, Mat 29.81/31.13/28.66/17.64/17.63.
 
+- Trabajo sesión 9 (2026-09-11): Drive auditado tras re-correr el 00 en Colab (0 diferencias). **Gotcha Colab:
+  la salida de una celda se trunca a ~5.000 líneas** → el listado de variables se imprime en 5 celdas (E.1–E.5)
+  y se guarda completo en `variables_disponibles.xlsx/.txt` dentro del zip. Editar notebooks con scripts en
+  archivo (no heredoc sin comillas: bash come los backticks y los `\n`).
+
 ## Arquitectura de consolidación (clave)
 
 - **Motor de lectura:** `pandas.read_excel(..., engine='calamine')` — 5-10x más rápido que openpyxl.
@@ -139,6 +144,7 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 - [x] Notebook 01 de trayectorias descriptivas (7 gráficos) + listado de variables (sección D).
 - [x] Revisión de resultados del 01 contra los datos (A3 corregido, ciclo lectivo en A1/A2).
 - [x] Corregir en el 00 grado "No especificado" (2016–2018) y `3grado` → cohortes ampliadas; firma `bdedd07f319c`.
-- [ ] Usuario: re-correr el 00 en Colab (Drive tiene la consolidación vieja) y luego el 01.
+- [x] Usuario re-corrió 00 y 01 en Colab (firma `bdedd07f319c`); Drive auditado = idéntico al local.
+- [x] Listado de variables sin truncar: 01 secciones C (catálogo + xlsx/txt), D (zip), E (5 celdas de impresión).
 - [ ] Opcional: afinar clasificación de variables `tipo_variable == 'otro'` (~2,1M filas).
 - [ ] Opcional: integrar microdatos `.sav` 2024 (requiere `pyreadstat`, no instalado).
