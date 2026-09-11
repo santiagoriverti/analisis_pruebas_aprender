@@ -9,7 +9,7 @@ en `.gitignore`. Se versionan solo las referencias livianas (`diccionario_maestr
 | Ruta | Formato | Descripción |
 |---|---|---|
 | `diccionario_maestro.xlsx` | Excel | Diccionario unificado + catálogo + notas de unidades (6 hojas) |
-| `catalogo_archivos.csv` | CSV | Un registro por archivo fuente con atributos parseados |
+| `catalogo_archivos.csv` | CSV | Un registro por archivo fuente con atributos parseados (`nivel_grado_inferido` = nivel/grado completados porque el nombre no los trae) |
 | `diccionario_ra.parquet` | Parquet | Diccionario RA: `base, campo, tipo_campo, contenido` |
 | `diccionario_aprender.parquet` | Parquet | Diccionario APRENDER: `variable → pregunta_texto, opcion_texto` (por año/nivel) |
 | `ra/ra_<base>.parquet` (7) | Parquet | Familia RA en formato **ancho**, años 2011–2025 apilados (`anio`) |
@@ -39,13 +39,23 @@ desemp  = desemp[desemp.tipo_variable == 'desempeño']
 > **Unidades:** APRENDER = conteos ponderados (factor de expansión), no porcentajes. RA = conteos absolutos.
 > No todas las series son comparables entre años (el operativo cambia de nivel/grado/cobertura).
 
+**Verificación:** la sección 9 del notebook imprime una `firma`; la de referencia es **`bdedd07f319c`**.
+
+**Antes de usar los datos, tener en cuenta** (detalle en [`../ESTADO.md`](../ESTADO.md) §6):
+- *Cargos Bis*: `total` mezcla cargos, horas y módulos según `tipo` → filtrar por `tipo` antes de sumar.
+- *Trayectoria*: el relevamiento del año *t* informa el ciclo lectivo *t−1*.
+- *Características* / *Población*: muchas columnas numéricas vienen como texto → `pd.to_numeric(..., errors='coerce')`.
+- APRENDER 2016–2018: `nivel`/`grado` completados por la consolidación (ver `nivel_grado_inferido` en el catálogo).
+- APRENDER: desempeño y nivel socioeconómico son conteos separados por celda → no se pueden cruzar entre sí.
+- Los nombres de `jurisdiccion` cambian entre años (p. ej. "Buenos aires", "Ciudad de Buenos Aires") → normalizar.
+
 ## Guardado en Google Drive (al correr en Colab)
 
 La última celda del notebook (sección 10) guarda una copia en **Mi unidad/`pruebas_aprender`** con dos formatos:
 
 ```
 pruebas_aprender/
-├── parquet/                 # eficiente/tipado — para el notebook 01
+├── parquet/                 # eficiente/tipado — lo leen los notebooks 01 y 02
 │   ├── ra/ra_<base>.parquet
 │   ├── aprender_long/anio=YYYY/*.parquet
 │   └── diccionario_*.parquet

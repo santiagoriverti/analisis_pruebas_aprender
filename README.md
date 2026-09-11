@@ -87,7 +87,8 @@ las **brechas** en el % Satisfactorio+Avanzado (Lengua y Matemática):
 ```
 analisis_pruebas_aprender/
 ├── README.md                  # este archivo
-├── ESTADO.md                  # traspaso: estado, cómo retomar, próximos pasos
+├── ESTADO.md                  # traspaso: estado, cómo retomar, gotchas, próximos pasos, bitácora
+├── CLAUDE.md                  # instrucciones para Claude Code (se cargan solas al abrir el repo)
 ├── CONTEXTO.md                # contexto de datos: familias, convenciones, diccionarios
 ├── requirements.txt           # dependencias Python
 ├── .gitignore                 # excluye la base .sav de 117 MB y la salida pesada regenerable
@@ -103,6 +104,8 @@ analisis_pruebas_aprender/
 │   ├── catalogo_archivos.csv
 │   ├── ra/ra_<base>.parquet            # familia RA (ancho)
 │   └── aprender_long/anio=YYYY/*.parquet  # familia APRENDER (largo)
+├── graficos_trayectorias/     # SALIDA del 01: gráficos + variables_disponibles.xlsx/.txt (no versionado)
+├── graficos_brechas/          # SALIDA del 02: gráficos + brechas_aprender.xlsx (no versionado)
 └── resultados_aprender/       # datos crudos descargados de la fuente oficial
     ├── 20XX Base APRENDER ... .xlsx      # resultados de las pruebas (2016–2025)
     ├── 20XX Caracteristicas - agregada.xlsx

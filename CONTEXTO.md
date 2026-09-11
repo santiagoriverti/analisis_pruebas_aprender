@@ -97,5 +97,21 @@ El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
 - **APRENDER → largo/tidy** (particionado por año). Conteos ponderados; columna `tipo_variable`
   distingue `desempeño` / `contexto` / `nse` / `nivel_educativo_hogar` / `otro`.
 - **`diccionario_maestro.xlsx`** — significado y unidad de cada variable (join por `variable`/`campo`).
+- **Nivel/grado 2016–2018:** se completan cuando el nombre del archivo no los trae (verificado por edad modal;
+  columna `nivel_grado_inferido` del catálogo). Firma de verificación de referencia: `bdedd07f319c`.
 
 Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
+
+## 8. Análisis (notebooks 01 y 02)
+
+- **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
+  cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
+  2016/2018/2021/2023/2025; Secundaria 5-6° Censal 2016/2017/2019/2022/2024). Genera el catálogo
+  `variables_disponibles.xlsx` con todas las variables y su significado.
+- **`02_brechas.ipynb` — brechas:** % Satisfactorio+Avanzado por sector, ámbito y provincia en esas cohortes.
+- **Advertencias de interpretación clave:**
+  - *Cargos Bis*: `total` mezcla cargos, horas cátedra y módulos → separar por `tipo`.
+  - Base *Trayectoria* del año *t* = ciclo lectivo *t−1*.
+  - El nivel socioeconómico **no** se puede cruzar con el desempeño en las bases agregadas (solo con microdatos).
+  - Matemática Secundaria 2022 sin nivel Avanzado; Chubut sin datos en Secundaria 2019; no hay diccionario 2025.
+- Lista completa de trampas y números de control: `ESTADO.md` (§5 y §6).
