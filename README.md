@@ -9,19 +9,22 @@ información estadística educativa de la Secretaría de Educación de la Nació
 |---|---|
 | **00 · Consolidación** (arma el dataset) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/00_consolidacion.ipynb) |
 | **01 · Trayectorias** (grafica la evolución) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb) |
+| **02 · Brechas** (sector, ámbito y provincia) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/02_brechas.ipynb) |
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
   (*Mi unidad/`pruebas_aprender`*), en Parquet (para el 01) y en Excel/CSV (para leer).
 - El **01** grafica las trayectorias y, al terminar, **descarga los gráficos en 300 dpi** (zip).
   Requiere haber corrido antes el **00** (lee de tu Drive).
+- El **02** analiza las **brechas de desempeño** (estatal/privado, urbano/rural y entre provincias) y descarga
+  gráficos + `brechas_aprender.xlsx` (zip). También lee de tu Drive; no necesita el 01.
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) y notebook 01 de trayectorias funcionando.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebook 01 de trayectorias y notebook 02 de brechas funcionando.
 
 ---
 
@@ -64,6 +67,19 @@ de las variables más relevantes, respetando la **comparabilidad**:
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb).
 
+## Brechas de desempeño (notebook 02)
+
+El notebook [`02_brechas.ipynb`](02_brechas.ipynb) sigue, dentro de las mismas cohortes comparables, cómo evolucionan
+las **brechas** en el % Satisfactorio+Avanzado (Lengua y Matemática):
+
+- **Sector:** estatal vs privado (brecha en puntos porcentuales).
+- **Ámbito:** urbano vs rural, y cruce sector × ámbito.
+- **Provincias:** mapas de calor provincia × año, cambio entre el primer y el último operativo, y dispersión territorial.
+- **Límite:** la brecha por **nivel socioeconómico no se puede calcular** con las bases agregadas (traen desempeño y NSE
+  por separado, sin su distribución conjunta); requiere microdatos.
+
+[Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/02_brechas.ipynb).
+
 ---
 
 ## Estructura del repositorio
@@ -77,6 +93,7 @@ analisis_pruebas_aprender/
 ├── .gitignore                 # excluye la base .sav de 117 MB y la salida pesada regenerable
 ├── 00_consolidacion.ipynb     # notebook que consolida todo el dataset
 ├── 01_analisis.ipynb          # notebook de trayectorias (evolución temporal descriptiva)
+├── 02_brechas.ipynb           # notebook de brechas (sector, ámbito, provincia)
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo

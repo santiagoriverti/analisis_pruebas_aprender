@@ -91,6 +91,12 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
   y se guarda completo en `variables_disponibles.xlsx/.txt` dentro del zip. Editar notebooks con scripts en
   archivo (no heredoc sin comillas: bash come los backticks y los `\n`).
 
+- Trabajo sesión 10 (2026-09-11): **`02_brechas.ipynb`** generado con script (`gen_nb02.py` en scratchpad, no
+  versionado): brechas % Satisf+Avanz por sector, ámbito, sector×ámbito y provincia (heatmaps, dumbbell de cambio,
+  dispersión) + `brechas_aprender.xlsx`. **NSE NO se cruza con desempeño en los agregados** (conteos separados por
+  celda). Provincias: normalizar nombres (`PROV_ALIAS`). Chubut sin Secundaria 2019. Brecha privado−estatal ~20–27 pp
+  estable; dispersión provincial de Mat. Secundaria cae por piso.
+
 ## Arquitectura de consolidación (clave)
 
 - **Motor de lectura:** `pandas.read_excel(..., engine='calamine')` — 5-10x más rápido que openpyxl.

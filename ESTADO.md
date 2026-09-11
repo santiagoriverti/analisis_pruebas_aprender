@@ -29,7 +29,8 @@ El notebook `00_consolidacion.ipynb` deja todo listo para analizar; **está comp
 | `01_analisis.ipynb` — trayectorias descriptivas (RA + cohortes APRENDER) | ✅ corre, 0 errores, 7 gráficos (revisado 2026-09-11) |
 | Listado de variables disponibles + significado (secciones C–E del 01 + `variables_disponibles.xlsx`) | ✅ |
 | Datos del Drive re-consolidados en Colab y auditados (firma `bdedd07f319c`, 18 tablas idénticas al local) | ✅ |
-| Más trayectorias / cortes geográficos | ⏳ opcional |
+| `02_brechas.ipynb` — brechas por sector, ámbito y provincia (APRENDER) | ✅ corre, 0 errores, 8 gráficos + Excel |
+| Más trayectorias RA / brecha por NSE (requiere microdatos) | ⏳ opcional |
 
 **Firma de referencia de la consolidación: `bdedd07f319c`** (desde 2026-09-11)
 Si al correr el notebook la `firma` da ese valor, los datos compilaron idénticos y sin errores.
@@ -166,8 +167,24 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 **Regla de comparabilidad:** RA = series de tiempo válidas; APRENDER = solo dentro de la misma
 `(nivel, grado, cobertura)`. Escala de desempeño homogénea (4 niveles) salvo Primaria 3° 2024.
 
+### 7b. Brechas (notebook 02) — descriptivo
+`02_brechas.ipynb` (21 celdas, corre en ~20 s, 0 errores, 8 gráficos + `brechas_aprender.xlsx` en zip). Lee del Drive,
+no necesita el 01. Cohortes `COHORTES` = Primaria 6° (2016/18/21/23/25) y Secundaria 5-6° (2016/17/19/22/24), Lengua y
+Matemática, indicador % Satisf+Avanz (y % Por debajo del básico).
+- **A** total país · **B** sector (estatal/privado, brecha pp) · **C** ámbito (urbano/rural) + sector × ámbito ·
+  **D** provincias: heatmaps provincia × año, cambio primer→último año (dumbbell), dispersión (rango y desvío) ·
+  **E** nota NSE · **F** Excel + zip.
+- Funciones: `cargar_cohorte` (filtro pyarrow por partición), `indicadores(df, por)`, `norm_prov` (`PROV_ALIAS`:
+  "Buenos aires"/" Buenos Aires", "Ciudad (Autónoma) de Buenos Aires"→CABA, "Tierra del Fuego, Antártida…"→TdF).
+- **NSE no cruzable con desempeño en las bases agregadas** (conteos separados por celda, sin distribución conjunta) →
+  solo con microdatos. **Chubut sin datos en Secundaria 2019.**
+- Resultados clave: brecha privado−estatal estable ~20–27 pp en todas las cohortes; en Primaria rural ≈ urbano (en
+  Matemática estatal, rural > urbano); en Secundaria urbano − rural ~16 pp en Lengua. Dispersión provincial en
+  Matemática Secundaria bajó (41→27 pp) **por piso** (caen todas), no por convergencia hacia arriba.
+
 ## 8. Próximos pasos
 
+0. Brechas por NSE con microdatos 2024 (`pyreadstat`; secundaria `.sav` 117 MB solo en local, no en el repo/Colab).
 1. Sumar más trayectorias RA (promoción, sobreedad desde *Matrícula por edad*, infraestructura desde
    *Características*) o cortes por provincia.
 2. (Opcional, más adelante) Cruce RA↔APRENDER por geografía (ya se probó: ~271 deptos matchean; requiere
@@ -194,3 +211,4 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 | 7 | 2026-09-11 | Revisión de resultados del 01 contra los datos: **A3 estaba mal** (sumaba horas/módulos/suplentes → 11,2 M; corregido a cargos docentes por nivel, ~883 mil en 2024) + nuevo A4 horas y módulos; A1/A2 rotulados por **ciclo lectivo** (Trayectoria t = ciclo t−1); nota de Avanzado vacío en Mat. Sec. 2022; fix warning de pandas; **sección D: listado completo de variables y su significado**. 00 sin cambios (firma igual). |
 | 8 | 2026-09-11 | **00: nivel/grado completados en 2016–2018** (2016/17 Primaria 6 grado y Secundaria 5-6 año; 2018 Primaria 6 grado; `3grado`→`3 grado`), verificado por edad modal con assert en la sección 8; catálogo con `nivel_grado_inferido`; firma incluye operativos → **nueva firma `bdedd07f319c`**. 01: cohortes ampliadas a Primaria 6° 2016/18/21/23/25 y Secundaria 5-6° 2016/17/19/22/24 (`ANIOS_PRIM6`/`ANIOS_SEC56`). Resultados 2016–2018 coinciden con los publicados (p. ej. Lengua 6° 2018 = 75,3%). Requiere re-correr el 00 en Colab. |
 | 9 | 2026-09-11 | Usuario re-corrió 00 y 01 en Colab: firma `bdedd07f319c` y control de grado OK; **auditoría del Drive** (catálogo idéntico, 57 parquet sin restos viejos, 18 tablas con contenido idéntico al local, Excel con grados corregidos). Colab **truncó** el listado de variables (>5.000 líneas) → 01 reestructurado: C arma catálogo + `variables_disponibles.xlsx/.txt`, D zip, E imprime en 5 celdas. |
+| 10 | 2026-09-11 | Nuevo **`02_brechas.ipynb`** (el usuario eligió "Brechas APRENDER"): sector, ámbito, sector × ámbito y provincias (heatmaps, cambio, dispersión) + `brechas_aprender.xlsx`. Verificado: totales = 01; nombres de provincia normalizados (24); NSE no cruzable en agregados (documentado). |
