@@ -43,6 +43,9 @@ El nombre del archivo codifica las dimensiones del operativo:
 > - 2016–2018 no siempre traen la palabra `Censal`/`Muestral`.
 > - `2019 ... Muestral  - Secundaria` tiene doble espacio.
 > - `2024 ... Primaria 3 grado - Agregada - Solo CC.csv.xlsx` arrastra `.csv` en el nombre.
+> - 2016–2017 no traen el **grado** y 2018 no trae **ni nivel ni grado**; 2016 escribe `3grado` sin espacio.
+>   El notebook 00 completa: 2016/2017 Primaria = `6 grado`, Secundaria = `5-6 año`; 2018 = Primaria `6 grado`
+>   (verificado por edad modal declarada: 11 años / 17 años). Columna `nivel_grado_inferido` del catálogo.
 > Estas variaciones hay que normalizarlas al parsear.
 
 ---

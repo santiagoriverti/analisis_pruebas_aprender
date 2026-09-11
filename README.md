@@ -21,7 +21,7 @@ https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `c9740263478b`). Sigue: notebook 01 de análisis.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) y notebook 01 de trayectorias funcionando.
 
 ---
 
@@ -56,7 +56,7 @@ de las variables más relevantes, respetando la **comparabilidad**:
   matrícula inicial por nivel, tasa de repitencia, tasa de abandono (por **ciclo lectivo**: la base *Trayectoria*
   del año *t* informa el ciclo *t−1*), cargos docentes por nivel y horas cátedra/módulos (separados por `tipo`).
 - **APRENDER** cambia de grado/nivel/cobertura cada año → **solo se compara dentro de la misma cohorte**:
-  Primaria 6° Censal (2021/2023/2025) y Secundaria 5-6° Censal (2019/2022/2024). Trayectorias de desempeño
+  Primaria 6° Censal (2016/2018/2021/2023/2025) y Secundaria 5-6° Censal (2016/2017/2019/2022/2024). Trayectorias de desempeño
   (% por nivel) en Lengua y Matemática, y por sector (Estatal vs Privado).
 - **Al final imprime el listado completo de variables disponibles y su significado** (RA y APRENDER, con años
   de disponibilidad) y deja `buscar_variable(texto)` para buscar por palabra.
@@ -131,9 +131,9 @@ Cobertura por año (resumen):
 
 | Año  | Operativo principal |
 |------|---------------------|
-| 2016 | Primaria y Secundaria (censal + muestral) |
-| 2017 | Primaria y Secundaria |
-| 2018 | Primaria (Lengua/Matemática) |
+| 2016 | Primaria 6 grado y Secundaria 5-6 año (censal) + Primaria 3 grado y Secundaria 2-3 año (muestral) |
+| 2017 | Primaria 6 grado (Cs. Naturales/Sociales) y Secundaria 5-6 año (Lengua/Matemática), censal |
+| 2018 | Primaria 6 grado (Lengua/Matemática), censal |
 | 2019 | Secundaria 5-6 año (censal + muestral) |
 | 2021 | Primaria 6 grado (censal) |
 | 2022 | Secundaria 5-6 (censal) + Primaria 6 (muestral) |
@@ -142,6 +142,9 @@ Cobertura por año (resumen):
 | 2025 | Primaria 6 grado (censal) |
 
 > Nota: 2020 no tuvo operativo APRENDER (pandemia); solo hay estadística agregada.
+>
+> En 2016–2018 varios nombres de archivo no traen nivel y/o grado. La consolidación los completa y lo verifica
+> con la edad más frecuente declarada por los estudiantes (11 años → 6° grado; 17 años → 5-6° año).
 
 ### 3. Microdatos públicos y documentación
 - `Base_publica_Ap2024.sav` — microdato individual secundaria 2024 (**117 MB, no versionado**).

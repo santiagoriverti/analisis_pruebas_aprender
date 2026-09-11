@@ -18,7 +18,8 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 
 > **Para retomar en otra PC/sesión: leer `ESTADO.md`** (handoff completo: instalación, ejecución,
 > dónde quedan los resultados, métricas de referencia, gotchas y próximos pasos).
-> **Firma de referencia de la consolidación: `c9740263478b`** (validada en local y en Colab).
+> **Firma de referencia de la consolidación: `bdedd07f319c`** (2026-09-11, incluye operativos con grado
+> corregido; la anterior `c9740263478b` era con grado "No especificado" en 2016–2018).
 
 - Repo con documentación + **notebook 00 de consolidación funcionando end-to-end y validado**.
 - Trabajo sesión 1 (setup):
@@ -76,6 +77,15 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
     normalizar quitando `_`. RA Características/Población tienen números como texto.
   - Notebook editado con `nbformat` y ejecutado con `python -m jupyter nbconvert --execute --inplace` (~2,5 min).
 
+- Trabajo sesión 8 (2026-09-11, grado 2016–2018):
+  - 00: `parse_nombre_aprender` (lo que dice el nombre) + `parse_aprender` completa con `NIVEL_SIN_NOMBRE` /
+    `GRADO_SIN_NOMBRE` (2016/17 Prim 6 grado, Sec 5-6 año; 2018 Prim 6 grado); `3grado`→`3 grado`.
+  - Evidencia = edad modal de la pregunta 1 (ap1/Ap1): 11→6°, 17→5-6°, 8→3°, 14→2-3°. Assert en sección 8.
+  - Firma ahora incluye `operativos` → **`bdedd07f319c`**. Filas/columnas iguales.
+  - 01: cohortes `ANIOS_PRIM6=[2016,2018,2021,2023,2025]`, `ANIOS_SEC56=[2016,2017,2019,2022,2024]`.
+    % Satisf+Avanz: Prim 6° Lengua 66.8/75.3/70.9/66.4/76.9, Mat 58.5/57.4/55.5/51.4/55.0;
+    Sec 5-6° Lengua 53.65/62.53/61.76/56.94/56.89, Mat 29.81/31.13/28.66/17.64/17.63.
+
 ## Arquitectura de consolidación (clave)
 
 - **Motor de lectura:** `pandas.read_excel(..., engine='calamine')` — 5-10x más rápido que openpyxl.
@@ -128,6 +138,7 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 - [x] Documentación de traspaso (`ESTADO.md`) y commits/push.
 - [x] Notebook 01 de trayectorias descriptivas (7 gráficos) + listado de variables (sección D).
 - [x] Revisión de resultados del 01 contra los datos (A3 corregido, ciclo lectivo en A1/A2).
-- [ ] Corregir en el 00 grado "No especificado" (2016–2018) y `3grado` → amplía cohortes; cambia la firma.
+- [x] Corregir en el 00 grado "No especificado" (2016–2018) y `3grado` → cohortes ampliadas; firma `bdedd07f319c`.
+- [ ] Usuario: re-correr el 00 en Colab (Drive tiene la consolidación vieja) y luego el 01.
 - [ ] Opcional: afinar clasificación de variables `tipo_variable == 'otro'` (~2,1M filas).
 - [ ] Opcional: integrar microdatos `.sav` 2024 (requiere `pyreadstat`, no instalado).
