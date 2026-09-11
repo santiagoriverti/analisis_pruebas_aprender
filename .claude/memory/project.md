@@ -14,7 +14,7 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 - Remoto: https://github.com/santiagoriverti/analisis_pruebas_aprender
 - Rama principal: `main`
 
-## Estado actual (2026-08-31)
+## Estado actual (2026-09-11)
 
 > **Para retomar en otra PC/sesión: leer `ESTADO.md`** (handoff completo: instalación, ejecución,
 > dónde quedan los resultados, métricas de referencia, gotchas y próximos pasos).
@@ -62,6 +62,19 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
     exporta cada gráfico a **300 dpi** en `graficos_trayectorias/`; celda final que zippea y (en Colab)
     descarga con `google.colab.files.download`. Badges de Colab de ambos notebooks en README.
     `graficos_trayectorias/` y `.zip` en `.gitignore`.
+
+- Trabajo sesión 7 (2026-09-11, revisión de resultados del 01):
+  - **Bug corregido A3:** sumaba `total` de Cargos Bis sin filtrar `tipo` (mezcla cargos/horas/módulos/suplentes/
+    no docentes → 11,2 M). Ahora cargos docentes por nivel (`tipo=='Cargos'`, 882.824 en 2024) + A4 horas/módulos.
+  - **Trayectoria RA(t) = ciclo lectivo t−1** (verificado: inicial de Trayectoria(t) ≈ Matrícula(t−1)). A1/A2
+    rotulados por ciclo lectivo con `a_ciclo_lectivo()`; la caída de repitencia es el ciclo 2020 (pandemia).
+  - Sec. 5-6° 2022≈2024 en % Satisf+Avanz es coincidencia real (no duplicado). Mat. 2022 sin Avanzado en la fuente.
+  - Nueva **sección D**: listado completo de variables (RA 744 cols; APRENDER 5.571 vars / 1.591 preguntas) +
+    `buscar_variable()`. Distintos desde pyarrow `group_by().aggregate([])` para velocidad.
+  - Gotchas: pandas `plot(style=dict, color=...)` falla si los NOMBRES de columnas contienen letras de color
+    (itera las claves del dict) → usar `ax.plot` por serie. Matrícula `s2` (sala) vs `s_2` (sobreedad): no
+    normalizar quitando `_`. RA Características/Población tienen números como texto.
+  - Notebook editado con `nbformat` y ejecutado con `python -m jupyter nbconvert --execute --inplace` (~2,5 min).
 
 ## Arquitectura de consolidación (clave)
 
@@ -113,7 +126,8 @@ educativa** de la Secretaría de Educación de la Nación (Argentina), 2011–20
 - [x] Diccionario maestro con significado/unidades de cada variable.
 - [x] Colab + guardado en Drive + verificación (firma) + auditoría de datos.
 - [x] Documentación de traspaso (`ESTADO.md`) y commits/push.
-- [ ] Definir objetivo analítico y armar **notebook 01 de análisis** (leer desde `pruebas_aprender/parquet/`).
-- [ ] Evaluar series comparables donde el universo lo permita (cuidado: operativo cambia por año).
+- [x] Notebook 01 de trayectorias descriptivas (7 gráficos) + listado de variables (sección D).
+- [x] Revisión de resultados del 01 contra los datos (A3 corregido, ciclo lectivo en A1/A2).
+- [ ] Corregir en el 00 grado "No especificado" (2016–2018) y `3grado` → amplía cohortes; cambia la firma.
 - [ ] Opcional: afinar clasificación de variables `tipo_variable == 'otro'` (~2,1M filas).
 - [ ] Opcional: integrar microdatos `.sav` 2024 (requiere `pyreadstat`, no instalado).

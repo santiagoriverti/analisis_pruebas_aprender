@@ -53,10 +53,13 @@ El notebook [`01_analisis.ipynb`](01_analisis.ipynb) muestra la **evolución en 
 de las variables más relevantes, respetando la **comparabilidad**:
 
 - **RA (2011–2025)** se releva igual todos los años → **series de tiempo válidas**. Trayectorias incluidas:
-  matrícula inicial por nivel, tasa de repitencia, tasa de abandono, cargos docentes.
+  matrícula inicial por nivel, tasa de repitencia, tasa de abandono (por **ciclo lectivo**: la base *Trayectoria*
+  del año *t* informa el ciclo *t−1*), cargos docentes por nivel y horas cátedra/módulos (separados por `tipo`).
 - **APRENDER** cambia de grado/nivel/cobertura cada año → **solo se compara dentro de la misma cohorte**:
   Primaria 6° Censal (2021/2023/2025) y Secundaria 5-6° Censal (2019/2022/2024). Trayectorias de desempeño
   (% por nivel) en Lengua y Matemática, y por sector (Estatal vs Privado).
+- **Al final imprime el listado completo de variables disponibles y su significado** (RA y APRENDER, con años
+  de disponibilidad) y deja `buscar_variable(texto)` para buscar por palabra.
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb).
 

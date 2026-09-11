@@ -1,7 +1,7 @@
 # ESTADO DEL PROYECTO — análisis_pruebas_aprender
 
 > Documento de traspaso (handoff). Sirve para **retomar el proyecto en otra sesión o en otra PC**
-> sin perder contexto. Última actualización: **2026-08-31**.
+> sin perder contexto. Última actualización: **2026-09-11**.
 
 ---
 
@@ -26,7 +26,8 @@ El notebook `00_consolidacion.ipynb` deja todo listo para analizar; **está comp
 | Guardado automático en Google Drive (parquet + excel) | ✅ verificado |
 | Celda de verificación con firma reproducible | ✅ |
 | **Auditoría de los datos entregados** (parquet descargado del Drive) | ✅ íntegro |
-| `01_analisis.ipynb` — trayectorias descriptivas (RA + cohortes APRENDER) | ✅ corre, 0 errores, 6 gráficos |
+| `01_analisis.ipynb` — trayectorias descriptivas (RA + cohortes APRENDER) | ✅ corre, 0 errores, 7 gráficos (revisado 2026-09-11) |
+| Listado de variables disponibles + significado (sección D del 01) | ✅ |
 | Más trayectorias / cortes geográficos | ⏳ opcional |
 
 **Firma de referencia de la consolidación: `c9740263478b`**
@@ -109,13 +110,32 @@ pide autorizar Drive (es por sesión; no reconsolida).
   (2024 Prim 3° Solo CC), ausencia de `Censal/Muestral` en 2016–2018 (= operativo principal, Censal).
 - **Comparabilidad temporal limitada:** el operativo cambia de nivel/grado/cobertura por año.
 - **2020:** sin operativo APRENDER (pandemia); solo estadística RA.
+- **Cargos Bis: `total` mezcla unidades según `tipo`** (Cargos, Cargos Suplentes, Cargos No Docentes, Horas,
+  Horas Suplentes, Módulos, Módulos Suplentes). Sumar sin filtrar da ~11,2 M (2024) cuando los cargos docentes
+  son **882.824**. Filtrar SIEMPRE por `tipo`. (`tipo == 'Cargos'` no tiene filas de subtotal.)
+- **Base Trayectoria: el relevamiento del año *t* informa el ciclo lectivo *t−1*.** Evidencia: la matrícula inicial
+  de Trayectoria(*t*) se parece más a Matrícula(*t−1*) que a Matrícula(*t*) en todos los años (2021: −0,6% vs −2,5%).
+  Por eso la caída de repitencia de "RA 2021" es el **ciclo 2020** (pandemia). El 01 usa `a_ciclo_lectivo()`.
+- **APRENDER Secundaria Matemática 2022:** `mdesemp_Avanzado` viene vacía (`' '`) en la fuente → no hay Avanzado ese año.
+- **Secundaria 5-6° 2022 vs 2024** dan % Satisf+Avanz casi idénticos (Lengua 56,94/56,89; Mat 17,64/17,63). No es
+  duplicación: los archivos y las distribuciones son distintos.
+- **Grado "No especificado"** en APRENDER 2016–2018 (el nombre del archivo no trae grado) y `3grado` sin espacio en
+  2016 Muestral: pendiente de corregir en el 00 (cambia la firma → hay que reconsolidar).
+- **RA Características/Población:** muchas columnas numéricas quedaron como texto (celdas vacías `''`) →
+  `pd.to_numeric(..., errors='coerce')` antes de sumar.
+- **Diccionario APRENDER:** no hay diccionario 2025; 102 variables 2025 toman el texto del año más cercano.
+- **Matrícula (RA):** `s2` = sala de 2 años y `s_2` = sobreedad en 2° año → no normalizar nombres quitando `_`.
 
 ## 7. Trayectorias (notebook 01) — descriptivo
 
 Enfoque elegido por el usuario: **trayectorias descriptivas** (evolución temporal), **sin econometría**.
-`01_analisis.ipynb` (corre en Colab/local, 0 errores, 6 gráficos) trae funciones reutilizables y:
-- **A — Estadística educativa (RA, 2011–2025):** matrícula inicial por nivel; tasa de repitencia;
-  tasa de abandono (salidos sin pase); cargos docentes. Todas series continuas.
+`01_analisis.ipynb` (corre en Colab/local, 0 errores, 7 gráficos) trae funciones reutilizables y:
+- **A — Estadística educativa (RA, 2011–2025):** A1 matrícula inicial por nivel; A2 tasa de repitencia y de
+  abandono (salidos sin pase) — ambas **por ciclo lectivo** (t−1); A3 **cargos docentes por nivel** (`tipo=='Cargos'`,
+  632 mil en 2011 → 890 mil en 2025) + tabla de todos los tipos; A4 horas cátedra y módulos (millones).
+- **D — Variables disponibles:** imprime ~5.900 líneas: RA (744 columnas en 7 bases, series numeradas agrupadas,
+  años con dato) y APRENDER (5.571 variables / 1.591 preguntas con años, códigos y opciones). Deja
+  `variables_ra`, `variables_aprender` y `buscar_variable(texto)`. Tarda ~30–60 s.
 - **B — Desempeño APRENDER (cohortes comparables):** Primaria 6° Censal (2021/23/25) y Secundaria
   5-6° Censal (2019/22/24), % por nivel en Lengua y Matemática; y % Satisf+Avanz por sector.
 - Los gráficos RA incluyen la **trayectoria Total** (línea negra punteada). Al finalizar, el notebook
@@ -123,7 +143,8 @@ Enfoque elegido por el usuario: **trayectorias descriptivas** (evolución tempor
 - Badges de Colab en el README para ambos notebooks (00 y 01).
 
 Funciones clave: `cargar_ra/cargar_aprender/cargar_desempeno`, `suma_anios`+`tasa` (RA, rangos
-`PRIM=1-6`, `SEC=7-12`), `harmonizar_nivel`+`ORDEN4`, `desempeno_pct(df, group_cols)`, `serie_cohorte(...)`.
+`PRIM=1-6`, `SEC=7-12`), `a_ciclo_lectivo` (Trayectoria t → ciclo t−1), `estilo_total`, `nota(fig, texto)`,
+`harmonizar_nivel`+`ORDEN4`, `desempeno_pct(df, group_cols)`, `serie_cohorte(...)`, `buscar_variable(texto)`.
 Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (repitentes), `ssp_X` (abandono).
 
 **Regla de comparabilidad:** RA = series de tiempo válidas; APRENDER = solo dentro de la misma
@@ -131,6 +152,9 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 
 ## 8. Próximos pasos
 
+0. **Corregir en el 00 el grado "No especificado" (2016–2018) y `3grado`** → sumaría Primaria 6° 2016/2018 y
+   Secundaria 5-6° 2016/2017 a las cohortes. Verificar grado contra el contenido de cada archivo. Cambia la
+   firma: re-correr el 00 en Colab y actualizar la firma de referencia.
 1. Sumar más trayectorias RA (promoción, sobreedad desde *Matrícula por edad*, infraestructura desde
    *Características*) o cortes por provincia.
 2. (Opcional, más adelante) Cruce RA↔APRENDER por geografía (ya se probó: ~271 deptos matchean; requiere
@@ -154,3 +178,4 @@ Indicadores RA desde base *Trayectoria*: `inicial_X` (matrícula), `nopromo_X` (
 | 4 | 2026-08-31 | Auditoría de los datos descargados del Drive (íntegros, firma `c9740263478b`); documentación de traspaso. |
 | 5 | 2026-08-31 | `01_analisis.ipynb`: **trayectorias descriptivas** (matrícula, repitencia, abandono, cargos; desempeño APRENDER por cohorte y sector). Sin econometría, por pedido del usuario. |
 | 6 | 2026-08-31 | Notebook 01: línea **Total** en gráficos RA, export de gráficos a **300 dpi** + descarga zip en Colab, badges de Colab (00 y 01) en README. Aclarado el flujo (00 una vez → Drive persistente; 01 solo lee). |
+| 7 | 2026-09-11 | Revisión de resultados del 01 contra los datos: **A3 estaba mal** (sumaba horas/módulos/suplentes → 11,2 M; corregido a cargos docentes por nivel, ~883 mil en 2024) + nuevo A4 horas y módulos; A1/A2 rotulados por **ciclo lectivo** (Trayectoria t = ciclo t−1); nota de Avanzado vacío en Mat. Sec. 2022; fix warning de pandas; **sección D: listado completo de variables y su significado**. 00 sin cambios (firma igual). |
