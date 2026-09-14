@@ -18,7 +18,7 @@
   **auditado**: catálogo idéntico, 57 parquet, 18 tablas con contenido idéntico al local.
 - `01_analisis.ipynb` (38 celdas) ✅ — corrido por el usuario en Colab con resultados = local. Sesión 12: orden de
   `opciones` del catálogo hecho determinístico (celda 25: archivos ordenados + `group_by(use_threads=False)` + sort estable);
-  **falta re-correrlo en Colab tras el push** y confirmar `variables_disponibles` idéntico al local.
+  re-corrido en Colab tras el push (commit `4b53c50`): `variables_disponibles` **idéntico** al local.
 - `02_brechas.ipynb` (21 celdas) ✅ local y Colab — `brechas_aprender.xlsx` (8 hojas) idéntico al local.
 - Auditoría del Drive 2026-09-14 (re-corrida del 00 en Colab): 57 parquet, 14 tablas de `excel/` (incl.
   `aprender_desempenos.xlsx` 109.473 filas y los CSV de Cargos Bis / Matrícula por edad) y `catalogo_archivos.csv` idénticos.
@@ -87,4 +87,4 @@
 - 2026-09-11 (s10): notebook 02 de brechas.
 - 2026-09-11 (s11): traspaso — ESTADO reescrito, CLAUDE.md, memoria reorganizada, requirements con matplotlib.
 - 2026-09-14 (s12): usuario corrió 00/01/02 en Colab; validación completa (Drive y salidas idénticos); arreglo de orden
-  determinístico en el catálogo del 01 y re-ejecución local.
+  determinístico en el catálogo del 01 (commit `4b53c50`), confirmado idéntico en Colab.

@@ -34,6 +34,11 @@ Secretaría de Educación de la Nación (Argentina). El usuario corre los notebo
 - Mensajes de commit largos: escribir a un archivo y `git commit -F archivo` (en PowerShell los here-strings pueden
   ser bloqueados por un hook; usar Bash).
 - Colab trunca la salida de una celda a ~5.000 líneas: partir impresiones largas en varias celdas.
+- **Validar corridas de Colab:** pedir al usuario los zips (`graficos_*.zip` y, del Drive, `parquet/` y `excel/`) y
+  compararlos archivo por archivo contra lo local con scripts (parquet con `assert_frame_equal`; Excel regenerando la
+  receta de `exportar_resultados` del 00). Última validación completa: 2026-09-14 (todo idéntico).
+- **pyarrow `group_by` con hilos no garantiza el orden de salida:** si el orden importa, archivos en orden fijo +
+  `group_by(..., use_threads=False)` + `sort_values(..., kind='stable')`.
 
 ## Trampas de datos que ya mordieron (detalle en ESTADO.md §6)
 - Cargos Bis: `total` mezcla cargos, horas y módulos → filtrar por `tipo`.
