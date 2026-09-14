@@ -1,7 +1,7 @@
 # ESTADO DEL PROYECTO — análisis_pruebas_aprender
 
 > Documento de traspaso (handoff). Sirve para **retomar el proyecto en otra sesión o en otra PC**
-> sin perder contexto. Última actualización: **2026-09-14** (sesión 12).
+> sin perder contexto. Última actualización: **2026-09-14** (sesión 13).
 > Para Claude Code: ver también [`CLAUDE.md`](CLAUDE.md) y [`.claude/memory/project.md`](.claude/memory/project.md).
 
 ---
@@ -135,6 +135,9 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
   14→2-3°; assert en la sección 8 del 00. Sin "Censal/Muestral" en 2016–2018 = Censal (diccionario: "Estudiantes").
 - **Nivel socioeconómico NO se puede cruzar con desempeño** en las bases agregadas: vienen como conteos separados por
   celda (jurisdicción × departamento × sector × ámbito), sin distribución conjunta. Solo con microdatos.
+- **Microdatos solo en 2024** (`.sav`, detalle en `CONTEXTO.md` §9): Secundaria 5-6° censal (386.882 alumnos × 22 var.,
+  sin etiquetas SPSS, **sin NSE**) y Primaria 3° muestral (91.264 × 24, con `NSE_escuela`). Puntajes y ponderadores con
+  ruido (SDC) y <10 % de códigos de colegio reasignados. % ponderados verificados = agregados. Leer con `pyreadstat`.
 - **Matemática Secundaria 2022:** `mdesemp_Avanzado` viene vacía en la fuente (no hay Avanzado ese año).
 - **Secundaria 2022 vs 2024:** % Satisf+Avanz casi idénticos (56,94/56,89; 17,64/17,63) — coincidencia real, no duplicado.
 - **Chubut sin datos en Secundaria 2019** (23 provincias).
@@ -183,12 +186,14 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
 ## 8. Próximos pasos
 
 1. ✅ (2026-09-14) Los tres notebooks están validados en Colab contra local: no queda validación pendiente.
-2. **Brecha por nivel socioeconómico con microdatos 2024** (`pyreadstat`): `Base_publica_prim_Ap2024.sav` (Primaria 3°,
-   versionado) y `Base_publica_Ap2024.sav` (Secundaria, 117 MB, **solo en la PC local**, no en GitHub/Colab). Solo una foto 2024.
-3. **Más trayectorias RA:** sobreedad (Matrícula `s_*` / Matrícula por edad), promoción, egresados, matrícula
-   estatal/privada y rural, conectividad (Características), cortes por provincia.
-4. **Contexto del estudiante en el tiempo:** usar `variables_disponibles.xlsx` para encontrar preguntas repetidas
-   (libros en el hogar, celular, repitencia, jardín, trabajo) y seguirlas dentro de cada cohorte.
+2. **Notebook 03 · contexto del estudiante en el tiempo** (prioridad sugerida, selección en `CONTEXTO.md` §10): APRENDER
+   A1–A6 (repitencia, jardín, educación de madre/padre, libros, conectividad del hogar, trabajo y cuidados) dentro de cada
+   cohorte por provincia/sector/ámbito + RA C1–C4 (sobreedad, egresados, abandono/repitencia por año de estudio, brecha de género).
+3. **Brechas por NSE / contexto con microdatos 2024** (`CONTEXTO.md` §9 y §10.D): Primaria 3° × `NSE_escuela`, jardín,
+   libros; Secundaria × educación de la madre, libros, computadora (sin NSE propio). `Base_publica_Ap2024.sav` (117 MB)
+   está **solo en la PC local** (no en GitHub/Colab). Solo una foto 2024.
+4. **Más RA** (`CONTEXTO.md` §10.C5–C11): nivel inicial, jornada extendida, comedor, conectividad escolar, migrantes,
+   discapacidad, vacancia docente, plurigrado; y fotos puntuales de APRENDER (§10.B: pandemia, salud mental, apuestas online).
 5. **Informe** (Word/presentación) con gráficos y tablas de 01 y 02.
 6. (Opcional) Cruce RA↔APRENDER por geografía (~271 deptos matchean; requiere crosswalk). **Sin econometría.**
 7. (Opcional) Afinar la clasificación `tipo_variable == 'otro'`.
@@ -218,3 +223,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
 | 10 | 2026-09-11 | Nuevo **`02_brechas.ipynb`**: sector, ámbito, sector × ámbito, provincias + `brechas_aprender.xlsx`. NSE no cruzable (documentado). |
 | 11 | 2026-09-11 | Traspaso: ESTADO reescrito, `CLAUDE.md` creado, memoria de proyecto reorganizada, CONTEXTO y README de datos actualizados. |
 | 12 | 2026-09-14 | Usuario corrió 00, 01 y 02 en Colab. **Validación completa** contra local: firma OK, 57 parquet + 14 tablas Excel/CSV del Drive y catálogo idénticos, tablas del 01/02 y `brechas_aprender.xlsx` idénticos. Única diferencia: orden de `opciones` en `variables_disponibles` (group_by de pyarrow con hilos) → **01 corregido** (orden determinístico) y re-ejecutado en local (27/30 celdas sin cambios; 3 del listado: mismo contenido). Re-corrido en Colab: `variables_disponibles` **idéntico** al local. |
+| 13 | 2026-09-14 | Exploración de microdatos 2024 (`pyreadstat`): contenido, anonimización y control de % ponderados = agregados. Comparación de riqueza de datos por año (2024 no es el más rico; solo suma microdatos). Selección de **variables de interés** para desarrollar → `CONTEXTO.md` §9–§10; próximos pasos reordenados (notebook 03). |

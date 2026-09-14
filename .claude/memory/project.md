@@ -1,7 +1,7 @@
 # Memoria de proyecto — análisis_pruebas_aprender
 
 > Memoria de trabajo para sesiones de Claude Code (viaja con el repo: sirve en cualquier PC).
-> Usuario: Santiago Riverti. Última actualización: **2026-09-14** (sesión 12).
+> Usuario: Santiago Riverti. Última actualización: **2026-09-14** (sesión 13).
 > Handoff completo y bitácora: **`ESTADO.md`**. Reglas de trabajo: **`CLAUDE.md`**.
 
 ---
@@ -23,8 +23,12 @@
 - Auditoría del Drive 2026-09-14 (re-corrida del 00 en Colab): 57 parquet, 14 tablas de `excel/` (incl.
   `aprender_desempenos.xlsx` 109.473 filas y los CSV de Cargos Bis / Matrícula por edad) y `catalogo_archivos.csv` idénticos.
 - Último commit relevante antes del traspaso: `272a149` (02 de brechas); luego commit de documentación (sesión 11).
-- Próximo paso sugerido (a elegir por el usuario): brecha por NSE con microdatos 2024, más trayectorias RA,
-  contexto del estudiante en el tiempo, o informe. Ver `ESTADO.md` §8.
+- Próximo paso sugerido (a elegir por el usuario): **notebook 03 · contexto del estudiante en el tiempo** con la
+  selección priorizada de `CONTEXTO.md` §10 (A1–A6 APRENDER + C1–C4 RA); luego brechas por NSE/contexto con microdatos
+  2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
+- Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
+  117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
+  2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
 
 ## 3. Decisiones tomadas (y por qué)
 | Decisión | Motivo |
@@ -68,6 +72,10 @@
   se usa (p. ej. `dict.fromkeys` para listar opciones), pasar `use_threads=False` y archivos en orden fijo.
 - Validar corridas de Colab: pedir al usuario los zips (`graficos_*.zip`, y del Drive `parquet/` y `excel/`) y comparar
   archivo por archivo con scripts (parquet con `assert_frame_equal`; Excel regenerando la receta de `exportar_resultados`).
+- **Microdatos `.sav`:** `pyreadstat.read_sav` (en requirements). Secundaria sin etiquetas (valores ya texto); siempre
+  ponderar (`ponderL`/`ponderM`, Primaria hasta ~390); ruido SDC y colegios reasignados → no analizar escuela individual.
+- **Variables de contexto entre años:** códigos cambian; buscar con `buscar_variable`, usar `area == 'Solo CC'`,
+  excluir Blanco/Dato faltante/Multimarca (2016–18), armonizar categorías; 2025 sin diccionario.
 
 ## 6. Arquitectura del 00 (referencia)
 - `clasificar(f)` → familia (RA/APRENDER/DICCIONARIO/OTRO). `parse_nombre_aprender(f)` = lo que dice el nombre;
@@ -88,3 +96,5 @@
 - 2026-09-11 (s11): traspaso — ESTADO reescrito, CLAUDE.md, memoria reorganizada, requirements con matplotlib.
 - 2026-09-14 (s12): usuario corrió 00/01/02 en Colab; validación completa (Drive y salidas idénticos); arreglo de orden
   determinístico en el catálogo del 01 (commit `4b53c50`), confirmado idéntico en Colab.
+- 2026-09-14 (s13): exploración de microdatos 2024, comparación de riqueza de datos por año y selección de variables de
+  interés → `CONTEXTO.md` §9–§10; próximos pasos reordenados; `pyreadstat` en requirements.
