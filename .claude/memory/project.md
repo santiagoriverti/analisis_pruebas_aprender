@@ -1,7 +1,7 @@
 # Memoria de proyecto — análisis_pruebas_aprender
 
 > Memoria de trabajo para sesiones de Claude Code (viaja con el repo: sirve en cualquier PC).
-> Usuario: Santiago Riverti. Última actualización: **2026-09-11** (sesión 11).
+> Usuario: Santiago Riverti. Última actualización: **2026-09-14** (sesión 12).
 > Handoff completo y bitácora: **`ESTADO.md`**. Reglas de trabajo: **`CLAUDE.md`**.
 
 ---
@@ -13,11 +13,15 @@
 - Local PC INECO: `C:\Users\sriverti\Desktop\INECO\Repositorios\analisis_pruebas_aprender`.
 - El usuario ejecuta en **Google Colab** (badges en README). Drive: *Mi unidad/`pruebas_aprender`* (`parquet/`, `excel/`).
 
-## 2. Estado al cierre (2026-09-11)
+## 2. Estado al cierre (2026-09-14)
 - `00_consolidacion.ipynb` (24 celdas) ✅ — firma **`bdedd07f319c`** (local y Colab). Drive re-consolidado y
   **auditado**: catálogo idéntico, 57 parquet, 18 tablas con contenido idéntico al local.
-- `01_analisis.ipynb` (38 celdas) ✅ — corrido por el usuario en Colab con resultados = local.
-- `02_brechas.ipynb` (21 celdas) ✅ local — **falta que el usuario lo corra en Colab** y lo validemos.
+- `01_analisis.ipynb` (38 celdas) ✅ — corrido por el usuario en Colab con resultados = local. Sesión 12: orden de
+  `opciones` del catálogo hecho determinístico (celda 25: archivos ordenados + `group_by(use_threads=False)` + sort estable);
+  **falta re-correrlo en Colab tras el push** y confirmar `variables_disponibles` idéntico al local.
+- `02_brechas.ipynb` (21 celdas) ✅ local y Colab — `brechas_aprender.xlsx` (8 hojas) idéntico al local.
+- Auditoría del Drive 2026-09-14 (re-corrida del 00 en Colab): 57 parquet, 14 tablas de `excel/` (incl.
+  `aprender_desempenos.xlsx` 109.473 filas y los CSV de Cargos Bis / Matrícula por edad) y `catalogo_archivos.csv` idénticos.
 - Último commit relevante antes del traspaso: `272a149` (02 de brechas); luego commit de documentación (sesión 11).
 - Próximo paso sugerido (a elegir por el usuario): brecha por NSE con microdatos 2024, más trayectorias RA,
   contexto del estudiante en el tiempo, o informe. Ver `ESTADO.md` §8.
@@ -60,6 +64,10 @@
 - Filtrar APRENDER por partición: `pads.dataset(OUT/aprender_long/anio=YYYY).to_table(filter=...)`.
 - Excel con textos del diccionario: limpiar con `openpyxl.cell.cell.ILLEGAL_CHARACTERS_RE`.
 - Hojas Excel con MultiIndex de columnas: aplanar antes de `to_excel`.
+- **pyarrow `group_by` con hilos devuelve filas en orden arbitrario** (4 órdenes distintos en 4 corridas): si el orden
+  se usa (p. ej. `dict.fromkeys` para listar opciones), pasar `use_threads=False` y archivos en orden fijo.
+- Validar corridas de Colab: pedir al usuario los zips (`graficos_*.zip`, y del Drive `parquet/` y `excel/`) y comparar
+  archivo por archivo con scripts (parquet con `assert_frame_equal`; Excel regenerando la receta de `exportar_resultados`).
 
 ## 6. Arquitectura del 00 (referencia)
 - `clasificar(f)` → familia (RA/APRENDER/DICCIONARIO/OTRO). `parse_nombre_aprender(f)` = lo que dice el nombre;
@@ -78,3 +86,5 @@
 - 2026-09-11 (s9): usuario corrió 00/01 en Colab, Drive auditado, listado sin truncar.
 - 2026-09-11 (s10): notebook 02 de brechas.
 - 2026-09-11 (s11): traspaso — ESTADO reescrito, CLAUDE.md, memoria reorganizada, requirements con matplotlib.
+- 2026-09-14 (s12): usuario corrió 00/01/02 en Colab; validación completa (Drive y salidas idénticos); arreglo de orden
+  determinístico en el catálogo del 01 y re-ejecución local.

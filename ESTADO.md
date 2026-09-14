@@ -1,7 +1,7 @@
 # ESTADO DEL PROYECTO — análisis_pruebas_aprender
 
 > Documento de traspaso (handoff). Sirve para **retomar el proyecto en otra sesión o en otra PC**
-> sin perder contexto. Última actualización: **2026-09-11** (sesión 11).
+> sin perder contexto. Última actualización: **2026-09-14** (sesión 12).
 > Para Claude Code: ver también [`CLAUDE.md`](CLAUDE.md) y [`.claude/memory/project.md`](.claude/memory/project.md).
 
 ---
@@ -29,9 +29,9 @@ Tres notebooks, todos ejecutables en Google Colab, **completos, probados y valid
 |---|---|
 | `00_consolidacion.ipynb` — consolidación + diccionario maestro + verificación (firma) + guardado en Drive | ✅ local y Colab |
 | Nivel/grado de archivos 2016–2018 completados (control por edad modal con assert) | ✅ |
-| **Datos del Drive** re-consolidados en Colab y **auditados** (18 tablas idénticas al local) | ✅ 2026-09-11 |
-| `01_analisis.ipynb` — trayectorias RA + cohortes APRENDER + catálogo de variables (sin truncar) | ✅ local y Colab |
-| `02_brechas.ipynb` — brechas por sector, ámbito, sector × ámbito y provincia | ✅ local (pendiente que el usuario lo corra en Colab) |
+| **Datos del Drive** re-consolidados en Colab y **auditados**: 57 parquet, 14 tablas de `excel/` y catálogo idénticos al local | ✅ 2026-09-14 |
+| `01_analisis.ipynb` — trayectorias RA + cohortes APRENDER + catálogo de variables (sin truncar) | ✅ local y Colab (orden de opciones determinístico desde 2026-09-14: re-correr en Colab tras el push) |
+| `02_brechas.ipynb` — brechas por sector, ámbito, sector × ámbito y provincia | ✅ local y Colab (8 hojas de `brechas_aprender.xlsx` idénticas, 2026-09-14) |
 | Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
 | Brecha por nivel socioeconómico (requiere microdatos) · más trayectorias RA | ⏳ próximos pasos |
 
@@ -149,6 +149,9 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
 - **Colab trunca la salida de una celda a ~5.000 líneas.**
 - pandas `plot(style=dict, color=...)` falla si los **nombres de columnas** contienen letras de color → usar `ax.plot` por serie.
 - `str.split(pat, n=1)` requiere `n=` como keyword.
+- **pyarrow `Table.group_by` con hilos no garantiza el orden de salida** (cambia entre corridas y entornos). Si el orden
+  importa, usar archivos en orden fijo + `group_by(..., use_threads=False)` y `sort_values(..., kind='stable')`
+  (así se arregló el orden de `opciones` del catálogo del 01, que difería entre local y Colab).
 
 ## 7. Notebooks de análisis
 
@@ -179,7 +182,8 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
 
 ## 8. Próximos pasos
 
-1. **Usuario:** correr `02_brechas.ipynb` en Colab y validar (tabla A = 01; cobertura 24 provincias, 23 en Sec. 2019).
+1. **Usuario:** tras el push, re-correr `01_analisis.ipynb` en Colab y pasar `graficos_trayectorias.zip`:
+   `variables_disponibles.xlsx/.txt` debe salir **idéntico** al local (antes solo difería el orden de 51 celdas de `opciones`).
 2. **Brecha por nivel socioeconómico con microdatos 2024** (`pyreadstat`): `Base_publica_prim_Ap2024.sav` (Primaria 3°,
    versionado) y `Base_publica_Ap2024.sav` (Secundaria, 117 MB, **solo en la PC local**, no en GitHub/Colab). Solo una foto 2024.
 3. **Más trayectorias RA:** sobreedad (Matrícula `s_*` / Matrícula por edad), promoción, egresados, matrícula
@@ -214,3 +218,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb -
 | 9 | 2026-09-11 | Usuario re-corrió 00 y 01 en Colab (firma OK); **Drive auditado** (0 diferencias). Colab truncó el listado → 01 secciones C/D/E + `variables_disponibles.xlsx/.txt`. |
 | 10 | 2026-09-11 | Nuevo **`02_brechas.ipynb`**: sector, ámbito, sector × ámbito, provincias + `brechas_aprender.xlsx`. NSE no cruzable (documentado). |
 | 11 | 2026-09-11 | Traspaso: ESTADO reescrito, `CLAUDE.md` creado, memoria de proyecto reorganizada, CONTEXTO y README de datos actualizados. |
+| 12 | 2026-09-14 | Usuario corrió 00, 01 y 02 en Colab. **Validación completa** contra local: firma OK, 57 parquet + 14 tablas Excel/CSV del Drive y catálogo idénticos, tablas del 01/02 y `brechas_aprender.xlsx` idénticos. Única diferencia: orden de `opciones` en `variables_disponibles` (group_by de pyarrow con hilos) → **01 corregido** (orden determinístico) y re-ejecutado en local (27/30 celdas sin cambios; 3 del listado: mismo contenido). |
