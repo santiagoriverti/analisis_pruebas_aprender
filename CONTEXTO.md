@@ -102,13 +102,16 @@ El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
 
 Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 
-## 8. Análisis (notebooks 01 y 02)
+## 8. Análisis (notebooks 01, 02 y 03)
 
 - **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
   cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
   2016/2018/2021/2023/2025; Secundaria 5-6° Censal 2016/2017/2019/2022/2024). Genera el catálogo
   `variables_disponibles.xlsx` con todas las variables y su significado.
 - **`02_brechas.ipynb` — brechas:** % Satisfactorio+Avanzado por sector, ámbito y provincia en esas cohortes.
+- **`03_provincias.ipynb` — evolución provincial y contexto:** cambio por provincia en los dos últimos operativos
+  (Prim 2023→2025, Sec 2022→2024), comparación con provincias de nivel inicial similar y cambios de contexto asociados
+  (cuestionario CC emparejado entre años + Relevamiento Anual). Usa parte de la selección de §10 para ese período.
 - **Advertencias de interpretación clave:**
   - *Cargos Bis*: `total` mezcla cargos, horas cátedra y módulos → separar por `tipo`.
   - Base *Trayectoria* del año *t* = ciclo lectivo *t−1*.
@@ -231,5 +234,5 @@ significado de los códigos; (5) armonizar categorías antes de comparar años.
 - **Secundaria:** Lengua/Matemática × educación de la madre, libros, computadora, horas de estudio, repitencia en primaria.
 - **Primaria 3°:** nivel de lectura × `NSE_escuela`, jardín, libros, lectura en el hogar, gusto por la escuela.
 
-**Prioridad sugerida:** A1–A6 + C1–C4 → notebook 03 "contexto del estudiante en el tiempo"; D → capítulo aparte de brechas
+**Prioridad sugerida:** A1–A6 + C1–C4 → notebook 04 "contexto del estudiante en el tiempo"; D → capítulo aparte de brechas
 por NSE/contexto con microdatos 2024.

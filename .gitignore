@@ -19,11 +19,13 @@ datos_consolidados/aprender_long/
 datos_consolidados/*.parquet
 # (se conservan diccionario_maestro.xlsx, catalogo_archivos.csv y README.md)
 
-# Gráficos y tablas exportados por 01_analisis.ipynb y 02_brechas.ipynb (regenerables)
+# Gráficos y tablas exportados por 01_analisis.ipynb, 02_brechas.ipynb y 03_provincias.ipynb (regenerables)
 graficos_trayectorias/
 graficos_trayectorias.zip
 graficos_brechas/
 graficos_brechas.zip
+graficos_provincias/
+graficos_provincias.zip
 
 # ==============================================================
 # Python / Jupyter
