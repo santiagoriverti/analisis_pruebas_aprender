@@ -10,7 +10,7 @@
 
 Consolidación y análisis **descriptivo** de las **Pruebas APRENDER** (evaluación, 2016–2025) y la **estadística
 educativa RA** (Relevamiento Anual, 2011–2025) de la Secretaría de Educación de la Nación (Argentina).
-Seis notebooks, todos ejecutables en Google Colab (00–04 **validados en Colab**; 05 validado en local):
+Seis notebooks, todos ejecutables en Google Colab (**los seis validados en Colab**):
 
 | Notebook | Qué hace | Salida |
 |---|---|---|
@@ -37,7 +37,7 @@ Seis notebooks, todos ejecutables en Google Colab (00–04 **validados en Colab*
 | `02_brechas.ipynb` — brechas por sector, ámbito, sector × ámbito y provincia | ✅ local y Colab (8 hojas de `brechas_aprender.xlsx` idénticas, 2026-09-14) |
 | `03_provincias.ipynb` — evolución provincial reciente (Prim 2023→2025, Sec 2022→2024) + contexto | ✅ local y Colab (22 hojas de `provincias_contexto.xlsx` idénticas, 2026-09-16) |
 | `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local y Colab (16 hojas de `contexto_estudiantes.xlsx` idénticas, 2026-09-16) |
-| `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño por provincia | ✅ local (2026-09-16; pendiente correrlo en Colab) |
+| `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño por provincia | ✅ local y Colab (4 hojas de `asociaciones_desempeno.xlsx` idénticas, 2026-09-16) |
 | Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
 | Brechas por NSE con microdatos 2024 · más RA · informe | ⏳ próximos pasos (§8) |
 
@@ -258,7 +258,6 @@ python -m jupyter nbconvert --to notebook --execute --inplace 05_asociaciones.ip
 
 ## 8. Próximos pasos
 
-0. **Usuario:** correr `05_asociaciones.ipynb` en Colab y pasar `asociaciones_desempeno.xlsx` para validarlo contra local.
 1. **Usuario:** **indagar con fuentes externas** las hipótesis del 03 (sección H): participación en
    APRENDER por provincia, régimen académico en secundaria, días de clase y conflictos docentes, sala de 3 y planes de
    alfabetización; y medir con los microdatos 2024 cuánto pesa la composición del hogar.
@@ -306,3 +305,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 05_asociaciones.ip
 | 15b | 2026-09-16 | Nuevo **`04_contexto.ipynb`** (contexto del estudiante en el tiempo): preguntas emparejadas en los 10 operativos de las dos cohortes (tabla por año con etiqueta de redacción y corte de serie), país/sector/ámbito/provincia; RA por año de estudio, egresados (ciclos 2010–2012 de primaria excluidos por cobertura), género y abandono provincial. Primaria 2025: acceso digital y trabajo no identificables (no se imputan). Ejecutado y revisado en local. |
 | 15c | 2026-09-16 | Usuario corrió el 04 en Colab: `contexto_estudiantes.xlsx` **idéntico** al local en sus 16 hojas (comparación exacta). Los cinco notebooks quedan validados en Colab. Cierre: memoria, CONTEXTO, README de datos y memoria global actualizados. |
 | 15d | 2026-09-16 | Pregunta del usuario: ¿qué mejoras de contexto acompañan mejores resultados? Nuevo **`05_asociaciones.ipynb`**: ρ de Spearman entre provincias (cambio vs cambio, frente a pares, nivel vs nivel) para 51 ventanas comparables de cuestionario y RA (docentes, vacantes, titulares), con permutaciones y Benjamini-Hochberg. Resultado: el contexto explica el nivel, no quién mejoró; señal débil en Secundaria (hogar), nada en docentes. Detectado posible cambio de reporte de cargos en Buenos Aires 2023–2025. Ejecutado y revisado en local. |
+| 15e | 2026-09-16 | Usuario corrió el 05 en Colab: `asociaciones_desempeno.xlsx` **idéntico** al local en sus 4 hojas (incluidos los *p* por permutaciones). Los seis notebooks quedan validados en Colab. |

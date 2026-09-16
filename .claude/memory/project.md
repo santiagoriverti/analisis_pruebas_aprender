@@ -30,10 +30,10 @@
 - `04_contexto.ipynb` (21 celdas) ✅ local y Colab (2026-09-16, 16 hojas de `contexto_estudiantes.xlsx` idénticas): contexto del estudiante en el tiempo
   (16 indicadores Prim + 18 Sec, país/sector/ámbito/provincia, tramos por redacción) + RA por año de estudio, egresados,
   género, abandono provincial. Generado con script temporal (no versionado): modificar con `nbformat` + asserts.
-- `05_asociaciones.ipynb` (16 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: ρ de Spearman entre provincias del
+- `05_asociaciones.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, 4 hojas de `asociaciones_desempeno.xlsx` idénticas): ρ de Spearman entre provincias del
   cambio de contexto (cuestionario + RA docentes) y del cambio de desempeño; 102 comparaciones, permutaciones + BH.
-  Generado con script temporal (no versionado). Validar en Colab comparando `asociaciones_desempeno.xlsx`.
-- Próximo paso sugerido: validar el 05 en Colab; brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
+  Generado con script temporal (no versionado); commit `ff9ba04`.
+- Próximo paso sugerido: brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -141,4 +141,4 @@
 - 2026-09-15 (s14): análisis provincial (4 afirmaciones del usuario) → nuevo `03_provincias.ipynb`, validado en local.
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
-  Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), ejecutado en local.
+  Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
