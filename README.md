@@ -13,6 +13,7 @@ información estadística educativa de la Secretaría de Educación de la Nació
 | **03 · Provincias** (evolución reciente y contexto) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/03_provincias.ipynb) |
 | **04 · Contexto** (contexto del estudiante en el tiempo) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb) |
 | **05 · Asociaciones** (¿qué mejoras acompañan mejores resultados?) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/05_asociaciones.ipynb) |
+| **06 · Microdatos 2024** (desempeño y contexto por estudiante) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/06_microdatos.ipynb) |
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
@@ -28,13 +29,16 @@ En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
   gráficos + `contexto_estudiantes.xlsx` (zip). Lee de tu Drive.
 - El **05** cruza, entre provincias, el **cambio del contexto** (hogar, acceso digital, docentes del RA) con el **cambio del
   desempeño** en ventanas comparables; descarga gráficos + `asociaciones_desempeno.xlsx` (zip). Lee de tu Drive.
+- El **06** usa los **microdatos 2024** (por estudiante): desempeño según el contexto del hogar, sector a igual contexto y
+  provincias a igual composición; descarga gráficos + `microdatos_2024.xlsx` (zip). Requiere subir `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip`
+  a *Mi unidad/`pruebas_aprender`* (no necesita el 00).
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo) y 05 (asociaciones) funcionando.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo), 05 (asociaciones) y 06 (microdatos 2024) funcionando.
 
 ---
 
@@ -132,6 +136,19 @@ El notebook [`05_asociaciones.ipynb`](05_asociaciones.ipynb) responde: **¿las p
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/05_asociaciones.ipynb).
 
+## Desempeño y contexto por estudiante — microdatos 2024 (notebook 06)
+
+El notebook [`06_microdatos.ipynb`](06_microdatos.ipynb) cruza, **estudiante por estudiante**, el desempeño con el contexto
+(lo que no permiten las bases agregadas), en Secundaria 5°/6° (censal) y Primaria 3° (lectura, muestral):
+
+- % Satisfactorio + Avanzado (o Niveles IV–V en lectura) según educación de la madre, libros, computadora, repitencia,
+  nivel socioeconómico de la escuela, jardín, apoyo familiar, etc.
+- **Sector a igual contexto** y **provincias a igual composición** de los hogares (estandarización directa).
+- En Colab extrae los `.sav` de los zip oficiales subidos a *Mi unidad/`pruebas_aprender`*; verifica que reproducen los
+  agregados. Una sola foto (2024), datos anonimizados; asociación, no causa.
+
+[Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/06_microdatos.ipynb).
+
 ---
 
 ## Estructura del repositorio
@@ -150,6 +167,7 @@ analisis_pruebas_aprender/
 ├── 03_provincias.ipynb        # notebook de evolución provincial reciente y contexto
 ├── 04_contexto.ipynb          # notebook de contexto del estudiante en el tiempo (APRENDER + RA)
 ├── 05_asociaciones.ipynb      # notebook de asociaciones entre cambios de contexto y de desempeño por provincia
+├── 06_microdatos.ipynb        # notebook de desempeño × contexto por estudiante (microdatos 2024)
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
@@ -164,6 +182,7 @@ analisis_pruebas_aprender/
 ├── graficos_provincias/       # SALIDA del 03: gráficos + provincias_contexto.xlsx (no versionado)
 ├── graficos_contexto/         # SALIDA del 04: gráficos + contexto_estudiantes.xlsx (no versionado)
 ├── graficos_asociaciones/     # SALIDA del 05: gráficos + asociaciones_desempeno.xlsx (no versionado)
+├── graficos_microdatos/       # SALIDA del 06: gráficos + microdatos_2024.xlsx (no versionado)
 └── resultados_aprender/       # datos crudos descargados de la fuente oficial
     ├── 20XX Base APRENDER ... .xlsx      # resultados de las pruebas (2016–2025)
     ├── 20XX Caracteristicas - agregada.xlsx

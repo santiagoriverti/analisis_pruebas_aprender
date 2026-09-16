@@ -11,9 +11,9 @@ Instrucciones para Claude Code en este repositorio (se cargan solas al abrir el 
 
 ## Qué es
 Consolidación (`00_consolidacion.ipynb`) y análisis **descriptivo** (`01_analisis.ipynb` trayectorias,
-`02_brechas.ipynb` brechas, `03_provincias.ipynb` provincias y contexto, `04_contexto.ipynb` contexto del estudiante en el tiempo, `05_asociaciones.ipynb` asociaciones entre cambios de contexto y desempeño) de las Pruebas APRENDER 2016–2025 y el Relevamiento Anual (RA) 2011–2025 de la
+`02_brechas.ipynb` brechas, `03_provincias.ipynb` provincias y contexto, `04_contexto.ipynb` contexto del estudiante en el tiempo, `05_asociaciones.ipynb` asociaciones entre cambios de contexto y desempeño, `06_microdatos.ipynb` desempeño × contexto por estudiante con microdatos 2024) de las Pruebas APRENDER 2016–2025 y el Relevamiento Anual (RA) 2011–2025 de la
 Secretaría de Educación de la Nación (Argentina). El usuario corre los notebooks en **Google Colab**: el 00 guarda en
-*Mi unidad/`pruebas_aprender`* y el 01 a 05 leen de ahí.
+*Mi unidad/`pruebas_aprender`* y el 01 a 05 leen de ahí. El 06 lee de la misma carpeta los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` (subidos por el usuario).
 
 ## Reglas del usuario (obligatorias)
 - Responder y documentar en **español**.

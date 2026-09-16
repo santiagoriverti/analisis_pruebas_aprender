@@ -102,7 +102,7 @@ El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
 
 Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 
-## 8. Análisis (notebooks 01 a 05)
+## 8. Análisis (notebooks 01 a 06)
 
 - **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
   cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
@@ -119,6 +119,8 @@ Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 - **`05_asociaciones.ipynb` — asociaciones:** ρ de Spearman entre provincias del cambio de indicadores (cuestionario + RA:
   docentes por alumno, horas, vacantes, titulares) y del cambio de desempeño en ventanas comparables; frente a pares y nivel
   vs nivel; permutaciones + Benjamini-Hochberg. Descriptivo: asociación, no causa.
+- **`06_microdatos.ipynb` — microdatos 2024:** implementa §10.D (desempeño × contexto por estudiante), sector a igual
+  contexto y provincias estandarizadas (educación de la madre × libros en Secundaria; NSE de escuela en Primaria 3°).
 - **Advertencias de interpretación clave:**
   - *Cargos Bis*: `total` mezcla cargos, horas cátedra y módulos → separar por `tipo`.
   - Base *Trayectoria* del año *t* = ciclo lectivo *t−1*.
@@ -163,7 +165,8 @@ a <10 % de los alumnos se les reasignó el código de colegio → **evitar anál
 
 **Para qué sirven:** cruzar desempeño × contexto **por estudiante** (imposible con los agregados), pero solo en 2024 y con
 pocas variables. Primaria 3° trae `NSE_escuela`; en Secundaria hay que usar proxies (educación de la madre, libros,
-computadora, baños). Para evolución en el tiempo se usan los agregados (notebooks 01 a 04).
+computadora, baños). Para evolución en el tiempo se usan los agregados (notebooks 01 a 04). Análisis: `06_microdatos.ipynb`
+(en Colab lee los zip oficiales `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` desde *Mi unidad/`pruebas_aprender`*).
 
 ### Riqueza de datos por año (bases agregadas APRENDER)
 
@@ -242,4 +245,4 @@ significado de los códigos; (5) armonizar categorías antes de comparar años.
 - **Primaria 3°:** nivel de lectura × `NSE_escuela`, jardín, libros, lectura en el hogar, gusto por la escuela.
 
 **Prioridad sugerida:** A1–A6 + C1–C4 → **implementado en `04_contexto.ipynb`** (2026-09-16; validado en Colab); D → capítulo
-aparte de brechas por NSE/contexto con microdatos 2024 (pendiente). Quedan sin desarrollar A7–A13, B y C5–C11.
+aparte de brechas por NSE/contexto con microdatos 2024 → **implementado en `06_microdatos.ipynb`** (2026-09-16). Quedan sin desarrollar A7–A13, B y C5–C11.

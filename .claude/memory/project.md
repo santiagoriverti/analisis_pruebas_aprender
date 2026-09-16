@@ -33,7 +33,10 @@
 - `05_asociaciones.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, 4 hojas de `asociaciones_desempeno.xlsx` idénticas): ρ de Spearman entre provincias del
   cambio de contexto (cuestionario + RA docentes) y del cambio de desempeño; 102 comparaciones, permutaciones + BH.
   Generado con script temporal (no versionado); commit `ff9ba04`.
-- Próximo paso sugerido: brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
+- `06_microdatos.ipynb` (22 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: microdatos 2024 por estudiante. En
+  Colab lee los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` de *Mi unidad/`pruebas_aprender`* (subidos por el usuario; contenido del zip no inspeccionado
+  localmente: se asume un `.sav` adentro, el código lo busca y falla con mensaje si no). Generado con script temporal.
+- Próximo paso sugerido: validar el 06 en Colab; más RA, informe con 01–06 o fuentes externas. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -61,6 +64,8 @@
 | 04: provincias en orden alfabético en los mapas de calor | Promediar cambios de indicadores con distinto sentido no tiene significado |
 | 05: Spearman + permutaciones + Benjamini-Hochberg + frente a pares | 24 provincias y ~100 comparaciones: sin control de azar y de convergencia aparecen correlaciones espurias (p. ej. repitencia ciclo básico +0,52 → +0,06 frente a pares) |
 | 05: el desempeño se mide en los mismos años que la ventana comparable de cada indicador | Evitar mezclar cambios de cuestionario con cambios de desempeño |
+| 06: comparar a igual contexto por estratos y estandarización directa (no regresión) | Pedido descriptivo, sin econometría; se entiende sin modelos |
+| 06: Primaria 3° resume lectura en Niveles IV–V y Lector incipiente–Nivel II | No hay un "nivel esperado" documentado en el repo para la escala de 6 niveles |
 
 ## 4. Números de control (para verificar corridas)
 - Firma 00: `bdedd07f319c` (vieja `c9740263478b` = Drive desactualizado).
@@ -81,6 +86,8 @@
   247,0 → 461,6 mil. `contexto_estudiantes.xlsx`: 16 hojas; `provincias` 816 filas.
 - 05: 102 comparaciones, 11 con p < 0,05, 5 con q < 0,10. Internet Sec 2017→2024 × Mat ρ +0,678 (q 0,031, pares +0,358);
   madre sec. completa Sec × Mat +0,582; % cargos sin cubrir Prim 2016→2025 × Lengua +0,581; % titulares Sec 2022→2024 × Lengua −0,559.
+- 06: Secundaria S+A Lengua 56,94 / Mat 17,67; Primaria 3° Niveles IV–V 45,0 %; brecha libros Sec 38,5/27,3 pp; rango provincial
+  Sec Lengua 28,2 → 18,8 pp a igual composición; Primaria 3° NSE Bajo 32,0 → Alto 66,7 %; Formosa Prim 3° 63,4 %.
 
 ## 5. Gotchas técnicos (además de los de datos en `ESTADO.md` §6)
 - **Heredoc por la herramienta Bash:** incluso con `<<'EOF'` los `\\` pueden llegar como `\` (rompió `'\\'` y `'\\n'`).
@@ -142,3 +149,4 @@
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
   Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
+  Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb`, ejecutado en local.
