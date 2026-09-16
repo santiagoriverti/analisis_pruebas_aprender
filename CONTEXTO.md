@@ -102,7 +102,7 @@ El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
 
 Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 
-## 8. Análisis (notebooks 01, 02 y 03)
+## 8. Análisis (notebooks 01 a 04)
 
 - **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
   cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
@@ -112,6 +112,10 @@ Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 - **`03_provincias.ipynb` — evolución provincial y contexto:** cambio por provincia en los dos últimos operativos
   (Prim 2023→2025, Sec 2022→2024), comparación con provincias de nivel inicial similar y cambios de contexto asociados
   (cuestionario CC emparejado entre años + Relevamiento Anual). Usa parte de la selección de §10 para ese período.
+- **`04_contexto.ipynb` — contexto del estudiante en el tiempo:** implementa §10.A1–A6 (+ sobreedad) en las cohortes
+  completas y §10.C1–C4 del RA. Especificación por año en `IND` (código, opciones, etiqueta de redacción); tabla
+  `preguntas_por_anio`. Primaria 2025: acceso digital y trabajo **no identificables** (varias preguntas candidatas con
+  perfil provincial parecido; no se imputan).
 - **Advertencias de interpretación clave:**
   - *Cargos Bis*: `total` mezcla cargos, horas cátedra y módulos → separar por `tipo`.
   - Base *Trayectoria* del año *t* = ciclo lectivo *t−1*.

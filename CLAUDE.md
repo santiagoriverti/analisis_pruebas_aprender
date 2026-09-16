@@ -11,9 +11,9 @@ Instrucciones para Claude Code en este repositorio (se cargan solas al abrir el 
 
 ## Qué es
 Consolidación (`00_consolidacion.ipynb`) y análisis **descriptivo** (`01_analisis.ipynb` trayectorias,
-`02_brechas.ipynb` brechas, `03_provincias.ipynb` provincias y contexto) de las Pruebas APRENDER 2016–2025 y el Relevamiento Anual (RA) 2011–2025 de la
+`02_brechas.ipynb` brechas, `03_provincias.ipynb` provincias y contexto, `04_contexto.ipynb` contexto del estudiante en el tiempo) de las Pruebas APRENDER 2016–2025 y el Relevamiento Anual (RA) 2011–2025 de la
 Secretaría de Educación de la Nación (Argentina). El usuario corre los notebooks en **Google Colab**: el 00 guarda en
-*Mi unidad/`pruebas_aprender`* y el 01/02/03 leen de ahí.
+*Mi unidad/`pruebas_aprender`* y el 01 a 04 leen de ahí.
 
 ## Reglas del usuario (obligatorias)
 - Responder y documentar en **español**.
@@ -48,6 +48,8 @@ Secretaría de Educación de la Nación (Argentina). El usuario corre los notebo
 - Nombres de provincia inconsistentes entre años → normalizar.
 - Matemática Secundaria 2022 sin nivel Avanzado; Chubut sin Secundaria 2019; sin diccionario 2025.
 - Cuestionario Primaria 2025 renumerado (códigos deducidos por opciones); jornada extendida del RA por provincia no confiable.
+- Cambios parejos en las 24 provincias entre dos operativos = probable cambio de cuestionario (Primaria 2023→2025: madre, libros).
+- RA: egresados de primaria de los ciclos 2010–2012 incompletos (provincias con 0); sobreedad secundaria de Santa Cruz 2025 atípica.
 
 ## Al terminar una sesión
 Actualizar `ESTADO.md` (estado, próximos pasos, bitácora) y `.claude/memory/project.md`; commitear y pushear si el

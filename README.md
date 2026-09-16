@@ -11,6 +11,7 @@ información estadística educativa de la Secretaría de Educación de la Nació
 | **01 · Trayectorias** (grafica la evolución) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/01_analisis.ipynb) |
 | **02 · Brechas** (sector, ámbito y provincia) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/02_brechas.ipynb) |
 | **03 · Provincias** (evolución reciente y contexto) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/03_provincias.ipynb) |
+| **04 · Contexto** (contexto del estudiante en el tiempo) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb) |
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
@@ -21,13 +22,16 @@ En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
   gráficos + `brechas_aprender.xlsx` (zip). También lee de tu Drive; no necesita el 01.
 - El **03** compara la **evolución de cada provincia** en los dos últimos operativos (también frente a provincias de
   nivel inicial similar) y qué cambió en su **contexto**; descarga gráficos + `provincias_contexto.xlsx` (zip). Lee de tu Drive.
+- El **04** sigue el **contexto de los estudiantes en el tiempo** dentro de cada cohorte (trayectoria, hogar, acceso digital,
+  trabajo) por país, sector, ámbito y provincia, más sobreedad, repitencia, abandono, egresados y género del RA; descarga
+  gráficos + `contexto_estudiantes.xlsx` (zip). Lee de tu Drive.
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas) y 03 (provincias y contexto) funcionando.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto) y 04 (contexto en el tiempo) funcionando.
 
 ---
 
@@ -97,6 +101,21 @@ operativos** (Primaria 6° 2023→2025 y Secundaria 5-6° 2022→2024) y **qué 
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/03_provincias.ipynb).
 
+## Contexto del estudiante en el tiempo (notebook 04)
+
+El notebook [`04_contexto.ipynb`](04_contexto.ipynb) sigue, **dentro de cada cohorte comparable**, cómo cambió el contexto
+de quienes rinden APRENDER y las trayectorias del Relevamiento Anual:
+
+- **APRENDER (cuestionario del estudiante):** repitencia, jardín desde sala de 3, sobreedad, nivel educativo de madre y
+  padre, libros, internet, computadora, celular, trabajo y cuidados; por país, sector, ámbito y provincia.
+- **Comparabilidad explícita:** cada año usa la pregunta equivalente (tabla `preguntas_por_anio`); la línea se corta cuando
+  cambia la redacción, el período, el formato o cuando pesa la opción "No sé".
+- **RA (2011–2025):** sobreedad, repitencia y abandono **por año de estudio**, egresados, brecha mujeres/varones y abandono
+  secundario por provincia.
+- **Límite:** Primaria 2025 sin diccionario (acceso digital y trabajo sin dato ese año); son agregados, sin econometría.
+
+[Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb).
+
 ---
 
 ## Estructura del repositorio
@@ -113,6 +132,7 @@ analisis_pruebas_aprender/
 ├── 01_analisis.ipynb          # notebook de trayectorias (evolución temporal descriptiva)
 ├── 02_brechas.ipynb           # notebook de brechas (sector, ámbito, provincia)
 ├── 03_provincias.ipynb        # notebook de evolución provincial reciente y contexto
+├── 04_contexto.ipynb          # notebook de contexto del estudiante en el tiempo (APRENDER + RA)
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
@@ -125,6 +145,7 @@ analisis_pruebas_aprender/
 ├── graficos_trayectorias/     # SALIDA del 01: gráficos + variables_disponibles.xlsx/.txt (no versionado)
 ├── graficos_brechas/          # SALIDA del 02: gráficos + brechas_aprender.xlsx (no versionado)
 ├── graficos_provincias/       # SALIDA del 03: gráficos + provincias_contexto.xlsx (no versionado)
+├── graficos_contexto/         # SALIDA del 04: gráficos + contexto_estudiantes.xlsx (no versionado)
 └── resultados_aprender/       # datos crudos descargados de la fuente oficial
     ├── 20XX Base APRENDER ... .xlsx      # resultados de las pruebas (2016–2025)
     ├── 20XX Caracteristicas - agregada.xlsx

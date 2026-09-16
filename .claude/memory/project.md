@@ -1,7 +1,7 @@
 # Memoria de proyecto — análisis_pruebas_aprender
 
 > Memoria de trabajo para sesiones de Claude Code (viaja con el repo: sirve en cualquier PC).
-> Usuario: Santiago Riverti. Última actualización: **2026-09-15** (sesión 14).
+> Usuario: Santiago Riverti. Última actualización: **2026-09-16** (sesión 15).
 > Handoff completo y bitácora: **`ESTADO.md`**. Reglas de trabajo: **`CLAUDE.md`**.
 
 ---
@@ -24,12 +24,14 @@
   `aprender_desempenos.xlsx` 109.473 filas y los CSV de Cargos Bis / Matrícula por edad) y `catalogo_archivos.csv` idénticos.
 - Commits recientes: `4b53c50` (01: orden determinístico, s12) · `3e491bd` (docs, s12) · `0a0a372` (microdatos y
   variables de interés, s13) · commit de la sesión 14 (`03_provincias.ipynb` + documentación). Ver `git log`.
-- `03_provincias.ipynb` (26 celdas) ✅ local (2026-09-15), **falta correrlo en Colab**: evolución provincial Prim 2023→2025 /
+- `03_provincias.ipynb` (26 celdas) ✅ local y Colab (2026-09-16, 22 hojas de `provincias_contexto.xlsx` idénticas): evolución provincial Prim 2023→2025 /
   Sec 2022→2024, comparación con pares (tercil de nivel inicial), contexto (11 indicadores CC Prim + 28 Sec, 5 RA por cohorte),
   fichas; jornada RA descartada. Validado contra el exploratorio (Δ vs 02 máx 0,009 pp; ρ máx 0,02).
-- Próximo paso sugerido (a elegir por el usuario): **notebook 04 · contexto del estudiante en el tiempo** con la
-  selección priorizada de `CONTEXTO.md` §10 (A1–A6 APRENDER + C1–C4 RA); luego brechas por NSE/contexto con microdatos
-  2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
+- `04_contexto.ipynb` (21 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: contexto del estudiante en el tiempo
+  (16 indicadores Prim + 18 Sec, país/sector/ámbito/provincia, tramos por redacción) + RA por año de estudio, egresados,
+  género, abandono provincial. Generado con script temporal (no versionado): modificar con `nbformat` + asserts.
+- Próximo paso sugerido: validar el 04 en Colab; luego brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA
+  o informe. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -89,6 +91,12 @@
 - **Gráficos (03):** paleta validada con el validador de la skill dataviz (azul/rojo divergente, azul/naranja categórico).
 - **El 03 se generó con un script temporal (no versionado):** para modificarlo, editar sus celdas con `nbformat` + asserts
   como el resto; los indicadores de contexto están en `SPECS` (celda de la sección D) y fallan con assert si una opción no existe.
+- **04 · agregar/cambiar indicadores:** editar `IND` (celda de la sección 1): por año `S('código', 'etiqueta de redacción',
+  num={...} | excluir={...} | prefijo='Ed_Madre_' | solo_nosabe=True)`; asserts fallan si una opción no existe. Nombres
+  de opción truncados en la fuente (p. ej. `Ed_Padre_Terciario_Universitario_incomple` 2021). Para ubicar códigos:
+  listar `Solo CC` por cohorte-año con el texto del diccionario (`anio_dic`/`nivel_dic`: 2018/2021/2023 Prim y 2019/2022
+  Sec = `General`).
+- **Validar el 04 de Colab:** comparar `contexto_estudiantes.xlsx` (16 hojas) contra el local.
 - **Validar el 03 de Colab:** comparar `provincias_contexto.xlsx` del zip contra el local (hojas `desempeno_provincias`,
   `convergencia`, `comparacion_pares`, `contexto_*`).
 
@@ -114,3 +122,5 @@
 - 2026-09-14 (s13): exploración de microdatos 2024, comparación de riqueza de datos por año y selección de variables de
   interés → `CONTEXTO.md` §9–§10; próximos pasos reordenados; `pyreadstat` en requirements.
 - 2026-09-15 (s14): análisis provincial (4 afirmaciones del usuario) → nuevo `03_provincias.ipynb`, validado en local.
+- 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
+  Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), ejecutado y revisado en local.
