@@ -12,6 +12,7 @@ información estadística educativa de la Secretaría de Educación de la Nació
 | **02 · Brechas** (sector, ámbito y provincia) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/02_brechas.ipynb) |
 | **03 · Provincias** (evolución reciente y contexto) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/03_provincias.ipynb) |
 | **04 · Contexto** (contexto del estudiante en el tiempo) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb) |
+| **05 · Asociaciones** (¿qué mejoras acompañan mejores resultados?) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/05_asociaciones.ipynb) |
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
@@ -25,13 +26,15 @@ En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **04** sigue el **contexto de los estudiantes en el tiempo** dentro de cada cohorte (trayectoria, hogar, acceso digital,
   trabajo) por país, sector, ámbito y provincia, más sobreedad, repitencia, abandono, egresados y género del RA; descarga
   gráficos + `contexto_estudiantes.xlsx` (zip). Lee de tu Drive.
+- El **05** cruza, entre provincias, el **cambio del contexto** (hogar, acceso digital, docentes del RA) con el **cambio del
+  desempeño** en ventanas comparables; descarga gráficos + `asociaciones_desempeno.xlsx` (zip). Lee de tu Drive.
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto) y 04 (contexto en el tiempo) funcionando.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo) y 05 (asociaciones) funcionando.
 
 ---
 
@@ -116,6 +119,19 @@ de quienes rinden APRENDER y las trayectorias del Relevamiento Anual:
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb).
 
+## Asociaciones entre contexto y desempeño (notebook 05)
+
+El notebook [`05_asociaciones.ipynb`](05_asociaciones.ipynb) responde: **¿las provincias que más mejoraron su contexto
+(libros, internet, educación de las familias, docentes por alumno, vacantes…) son las que más mejoraron en las pruebas?**
+
+- Correlación de rangos (Spearman) entre las 24 provincias: **cambio vs cambio**, **frente a pares** (controla el punto de
+  partida) y **nivel vs nivel**; *p* por permutaciones y corrección por comparaciones múltiples.
+- **Resultado:** el contexto del hogar se asocia fuerte con el **nivel**, pero sus **cambios** casi no acompañan a los cambios
+  de desempeño; señal débil en Secundaria (internet, educación de la madre, libros), en parte efecto piso y de composición;
+  en recursos docentes, sin relación. Asociación, no causa.
+
+[Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/05_asociaciones.ipynb).
+
 ---
 
 ## Estructura del repositorio
@@ -133,6 +149,7 @@ analisis_pruebas_aprender/
 ├── 02_brechas.ipynb           # notebook de brechas (sector, ámbito, provincia)
 ├── 03_provincias.ipynb        # notebook de evolución provincial reciente y contexto
 ├── 04_contexto.ipynb          # notebook de contexto del estudiante en el tiempo (APRENDER + RA)
+├── 05_asociaciones.ipynb      # notebook de asociaciones entre cambios de contexto y de desempeño por provincia
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
@@ -146,6 +163,7 @@ analisis_pruebas_aprender/
 ├── graficos_brechas/          # SALIDA del 02: gráficos + brechas_aprender.xlsx (no versionado)
 ├── graficos_provincias/       # SALIDA del 03: gráficos + provincias_contexto.xlsx (no versionado)
 ├── graficos_contexto/         # SALIDA del 04: gráficos + contexto_estudiantes.xlsx (no versionado)
+├── graficos_asociaciones/     # SALIDA del 05: gráficos + asociaciones_desempeno.xlsx (no versionado)
 └── resultados_aprender/       # datos crudos descargados de la fuente oficial
     ├── 20XX Base APRENDER ... .xlsx      # resultados de las pruebas (2016–2025)
     ├── 20XX Caracteristicas - agregada.xlsx

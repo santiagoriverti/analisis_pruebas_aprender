@@ -30,7 +30,10 @@
 - `04_contexto.ipynb` (21 celdas) ✅ local y Colab (2026-09-16, 16 hojas de `contexto_estudiantes.xlsx` idénticas): contexto del estudiante en el tiempo
   (16 indicadores Prim + 18 Sec, país/sector/ámbito/provincia, tramos por redacción) + RA por año de estudio, egresados,
   género, abandono provincial. Generado con script temporal (no versionado): modificar con `nbformat` + asserts.
-- Próximo paso sugerido: brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
+- `05_asociaciones.ipynb` (16 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: ρ de Spearman entre provincias del
+  cambio de contexto (cuestionario + RA docentes) y del cambio de desempeño; 102 comparaciones, permutaciones + BH.
+  Generado con script temporal (no versionado). Validar en Colab comparando `asociaciones_desempeno.xlsx`.
+- Próximo paso sugerido: validar el 05 en Colab; brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -56,6 +59,8 @@
 | 04: Primaria 2025 acceso digital y trabajo **sin dato** (no imputar) | Varias preguntas candidatas con perfil provincial casi igual (ρ 0,96); sin diccionario ni cuestionario publicado |
 | 04: egresados de primaria ciclos 2010–2012 excluidos | Provincias que informan 0 egresados (cobertura incompleta) |
 | 04: provincias en orden alfabético en los mapas de calor | Promediar cambios de indicadores con distinto sentido no tiene significado |
+| 05: Spearman + permutaciones + Benjamini-Hochberg + frente a pares | 24 provincias y ~100 comparaciones: sin control de azar y de convergencia aparecen correlaciones espurias (p. ej. repitencia ciclo básico +0,52 → +0,06 frente a pares) |
+| 05: el desempeño se mide en los mismos años que la ventana comparable de cada indicador | Evitar mezclar cambios de cuestionario con cambios de desempeño |
 
 ## 4. Números de control (para verificar corridas)
 - Firma 00: `bdedd07f319c` (vieja `c9740263478b` = Drive desactualizado).
@@ -74,6 +79,8 @@
   85,7/84,2/75,4/73,5 · sobreedad Sec 26,3/22,8/17,7 (2019–2024) · trabaja para empleador Sec 19,7 → 15,6 (2022→2024).
   RA: abandono secundaria varones 4,42 → 1,37 %, mujeres 3,53 → 1,07 % (ciclos 2010→2024); egresados secundaria
   247,0 → 461,6 mil. `contexto_estudiantes.xlsx`: 16 hojas; `provincias` 816 filas.
+- 05: 102 comparaciones, 11 con p < 0,05, 5 con q < 0,10. Internet Sec 2017→2024 × Mat ρ +0,678 (q 0,031, pares +0,358);
+  madre sec. completa Sec × Mat +0,582; % cargos sin cubrir Prim 2016→2025 × Lengua +0,581; % titulares Sec 2022→2024 × Lengua −0,559.
 
 ## 5. Gotchas técnicos (además de los de datos en `ESTADO.md` §6)
 - **Heredoc por la herramienta Bash:** incluso con `<<'EOF'` los `\\` pueden llegar como `\` (rompió `'\\'` y `'\\n'`).
@@ -134,3 +141,4 @@
 - 2026-09-15 (s14): análisis provincial (4 afirmaciones del usuario) → nuevo `03_provincias.ipynb`, validado en local.
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
+  Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), ejecutado en local.

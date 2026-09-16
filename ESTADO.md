@@ -10,7 +10,7 @@
 
 Consolidación y análisis **descriptivo** de las **Pruebas APRENDER** (evaluación, 2016–2025) y la **estadística
 educativa RA** (Relevamiento Anual, 2011–2025) de la Secretaría de Educación de la Nación (Argentina).
-Cinco notebooks, todos ejecutables en Google Colab (**los cinco validados en Colab**):
+Seis notebooks, todos ejecutables en Google Colab (00–04 **validados en Colab**; 05 validado en local):
 
 | Notebook | Qué hace | Salida |
 |---|---|---|
@@ -19,6 +19,7 @@ Cinco notebooks, todos ejecutables en Google Colab (**los cinco validados en Col
 | `02_brechas.ipynb` | Brechas de desempeño APRENDER por sector, ámbito y provincia | `graficos_brechas.zip` (8 gráficos + `brechas_aprender.xlsx`) |
 | `03_provincias.ipynb` | Evolución provincial en los dos últimos operativos, comparación con provincias de nivel inicial similar y cambios de contexto asociados | `graficos_provincias.zip` (5 gráficos + `provincias_contexto.xlsx`) |
 | `04_contexto.ipynb` | Contexto del estudiante en el tiempo dentro de cada cohorte (APRENDER: 16 indicadores Prim + 18 Sec; país, sector, ámbito, provincia) + RA por año de estudio, egresados y género | `graficos_contexto.zip` (13 gráficos + `contexto_estudiantes.xlsx`) |
+| `05_asociaciones.ipynb` | ¿Las provincias que más mejoraron su contexto (hogar, acceso digital, docentes del RA) mejoraron más en las pruebas? ρ de Spearman cambio vs cambio, frente a pares y nivel vs nivel | `graficos_asociaciones.zip` (3 gráficos + `asociaciones_desempeno.xlsx`) |
 
 - **Remoto:** https://github.com/santiagoriverti/analisis_pruebas_aprender (rama `main`)
 - **Local (PC INECO):** `C:\Users\sriverti\Desktop\INECO\Repositorios\analisis_pruebas_aprender`
@@ -36,6 +37,7 @@ Cinco notebooks, todos ejecutables en Google Colab (**los cinco validados en Col
 | `02_brechas.ipynb` — brechas por sector, ámbito, sector × ámbito y provincia | ✅ local y Colab (8 hojas de `brechas_aprender.xlsx` idénticas, 2026-09-14) |
 | `03_provincias.ipynb` — evolución provincial reciente (Prim 2023→2025, Sec 2022→2024) + contexto | ✅ local y Colab (22 hojas de `provincias_contexto.xlsx` idénticas, 2026-09-16) |
 | `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local y Colab (16 hojas de `contexto_estudiantes.xlsx` idénticas, 2026-09-16) |
+| `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño por provincia | ✅ local (2026-09-16; pendiente correrlo en Colab) |
 | Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
 | Brechas por NSE con microdatos 2024 · más RA · informe | ⏳ próximos pasos (§8) |
 
@@ -50,7 +52,7 @@ aparece, el Drive está desactualizado → re-correr el 00.
 ### 3.1 Uso normal (Google Colab, sin instalar nada)
 Abrir el badge del notebook en el README → *Entorno de ejecución → Ejecutar todo* → autorizar Drive.
 - **00:** se corre **una sola vez** (clona el repo, consolida ~5 min, imprime la verificación y guarda en Drive).
-- **01 a 04:** solo **montan el Drive y leen** (no reconsolidan). Son independientes entre sí.
+- **01 a 05:** solo **montan el Drive y leen** (no reconsolidan). Son independientes entre sí.
 - **Re-correr el 00 solo si:** (1) se borró/movió *Mi unidad/`pruebas_aprender`*; (2) se agregan datos a
   `resultados_aprender/`; (3) cambia la lógica de consolidación. El guardado reemplaza `parquet/ra` y
   `parquet/aprender_long` completos y sobrescribe el resto: **no hay que tocar nada a mano en el Drive**.
@@ -66,23 +68,24 @@ python -m jupyter nbconvert --to notebook --execute --inplace 01_analisis.ipynb 
 python -m jupyter nbconvert --to notebook --execute --inplace 02_brechas.ipynb --ExecutePreprocessor.timeout=1800
 python -m jupyter nbconvert --to notebook --execute --inplace 03_provincias.ipynb --ExecutePreprocessor.timeout=1800
 python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb --ExecutePreprocessor.timeout=1800
+python -m jupyter nbconvert --to notebook --execute --inplace 05_asociaciones.ipynb --ExecutePreprocessor.timeout=1800
 ```
 - Los datos crudos (`resultados_aprender/`, 156 `.xlsx`) **están versionados**: el clone los trae.
 - **No** se versionan `Base_publica_Ap2024.sav` (117 MB, supera el límite de GitHub) ni la salida pesada
   (`datos_consolidados/ra/`, `aprender_long/`, `*.parquet`) ni las carpetas/zips de gráficos.
 - **Motor de lectura obligatorio:** `python-calamine` (openpyxl no termina de leer los APRENDER de 1000+ columnas).
-- Tiempos locales: 00 ≈ 5 min · 01 ≈ 2,5 min · 02 ≈ 20 s · 03 ≈ 40 s · 04 ≈ 1,3 min. En local, 01 a 04 leen de `datos_consolidados/`.
+- Tiempos locales: 00 ≈ 5 min · 01 ≈ 2,5 min · 02 ≈ 20 s · 03 ≈ 40 s · 04 ≈ 1,3 min · 05 ≈ 30 s. En local, 01 a 05 leen de `datos_consolidados/`.
 
 ## 4. Dónde quedan los resultados
 
-- **Local:** `datos_consolidados/` (regenerable) · `graficos_trayectorias/` + `.zip` (01) · `graficos_brechas/` + `.zip` (02) · `graficos_provincias/` + `.zip` (03) · `graficos_contexto/` + `.zip` (04).
+- **Local:** `datos_consolidados/` (regenerable) · `graficos_trayectorias/` + `.zip` (01) · `graficos_brechas/` + `.zip` (02) · `graficos_provincias/` + `.zip` (03) · `graficos_contexto/` + `.zip` (04) · `graficos_asociaciones/` + `.zip` (05).
 - **Drive** (*Mi unidad/`pruebas_aprender`*, lo escribe el 00 en Colab):
   - `parquet/` → `ra/ra_<base>.parquet` (7), `aprender_long/anio=YYYY/` (48 archivos), `diccionario_ra/aprender.parquet`.
-    **Es lo que leen el 01 a 04** (el 04 usa también `diccionario_aprender.parquet`).
+    **Es lo que leen el 01 a 05** (el 04 usa también `diccionario_aprender.parquet`).
   - `excel/` → `diccionario_maestro.xlsx`, `ra_<base>.xlsx` (≤200k filas), `ra_cargos_bis.csv`,
     `ra_matricula_por_edad.csv`, `aprender_desempenos.xlsx` (109.473 filas).
   - `catalogo_archivos.csv`.
-- **Descargas de Colab:** `graficos_trayectorias.zip` (01), `graficos_brechas.zip` (02), `graficos_provincias.zip` (03) y `graficos_contexto.zip` (04).
+- **Descargas de Colab:** `graficos_trayectorias.zip` (01), `graficos_brechas.zip` (02), `graficos_provincias.zip` (03), `graficos_contexto.zip` (04) y `graficos_asociaciones.zip` (05).
 
 ## 5. Modelo de datos
 
@@ -136,6 +139,8 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
 - `Departamento` capitalizado en 2024 → normalizado en `_norm_keys()`. Cargos Bis: 7 filas con `ambito` nulo (origen).
 - **Egresados de primaria (Trayectoria) incompletos en los relevamientos 2011–2013** (ciclos 2010–2012: 5, 2 y 1 provincias
   informan 0) → el 04 los excluye. Secundaria sin ese problema.
+- **Alumnos por maestro frente a alumnos en Buenos Aires (Cargos):** ≈ 26 estable hasta 2022 → 21,5 / 19,4 / 18,4
+  (2023–2025). Probable cambio en el reporte de cargos; no leerlo como incorporación de maestros (05).
 - **Sobreedad secundaria de Santa Cruz:** baja de 51 % (2011) a 6,5 % (2024) y salta a 17,6 % (2025) → revisar.
 - **Jornada completa/extendida (Población) por provincia: inconsistente entre años** (saltos de decenas de pp, Santa Fe
   113 % en 2025, Santa Cruz 97 %→1 %) → no usar como indicador (03, sección G).
@@ -233,11 +238,27 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
   RA: abandono secundario 4,4/3,5 % → 1,4/1,1 % (varones/mujeres, ciclos 2010→2024); egresados secundaria 247 → 462 mil,
   % mujeres 59,0 → 53,3.
 
+### 7.5 `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño (16 celdas)
+- **Datos:** `DES` (% S+A por cohorte × área × provincia × año), `pct_provincia()` (receta del 04), `RA[cohorte]` por
+  provincia y año (alumnos por maestro frente a alumnos, maestros de apoyo, % cargos sin cubrir, horas docentes y cargos
+  por alumno, % horas sin cubrir, % titulares de Cargos Bis, sobreedad, repitencia, abandono).
+- **Ventanas:** `VENTANAS` (26 pares de años con pregunta comparable) + RA en ventana larga y en los dos últimos operativos
+  → 51 ventanas × 2 áreas = 102 comparaciones.
+- **Medidas:** ρ de Spearman cambio vs cambio, frente a pares (tercil de nivel inicial, criterio del 03) y nivel vs nivel;
+  *p* por 10.000 permutaciones (semilla `20260916`), *q* de Benjamini-Hochberg. A mapas de correlaciones, B dispersión
+  por provincia, C lectura, D `asociaciones_desempeno.xlsx` (4 hojas) + zip.
+- **Hallazgos:** 11/102 con p < 0,05 (≈ 5 por azar), 5 con q < 0,10. Secundaria: internet 2017→2024 ρ +0,68 con Mat
+  (frente a pares +0,36, efecto piso), madre secundaria completa +0,58 Mat (pares +0,41), madre terciario +0,50 Lengua,
+  libros 2022→2024 +0,55 Mat frente a pares. Docentes: sin relación (alumnos por maestro Prim −0,11 / −0,22; horas por
+  alumno Sec +0,26 / +0,35, ≈ 0 frente a pares); las "significativas" docentes van al revés o cambian de signo. Primaria:
+  nada consistente. Niveles: libros Sec +0,85 / +0,75, internet +0,78 / +0,72.
+
 **Regla de comparabilidad:** RA = series de tiempo válidas; APRENDER = solo dentro de la misma
 `(nivel, grado, cobertura)`. Escala de desempeño homogénea (4 niveles) salvo Primaria 3° 2024.
 
 ## 8. Próximos pasos
 
+0. **Usuario:** correr `05_asociaciones.ipynb` en Colab y pasar `asociaciones_desempeno.xlsx` para validarlo contra local.
 1. **Usuario:** **indagar con fuentes externas** las hipótesis del 03 (sección H): participación en
    APRENDER por provincia, régimen académico en secundaria, días de clase y conflictos docentes, sala de 3 y planes de
    alfabetización; y medir con los microdatos 2024 cuánto pesa la composición del hogar.
@@ -248,7 +269,7 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
    está **solo en la PC local** (no en GitHub/Colab). Solo una foto 2024.
 3. **Más RA** (`CONTEXTO.md` §10.C5–C11): nivel inicial, jornada extendida, comedor, conectividad escolar, migrantes,
    discapacidad, vacancia docente, plurigrado; y fotos puntuales de APRENDER (§10.B: pandemia, salud mental, apuestas online).
-4. **Informe** (Word/presentación) con gráficos y tablas de 01 a 04.
+4. **Informe** (Word/presentación) con gráficos y tablas de 01 a 05.
 5. (Opcional) Cruce RA↔APRENDER por geografía (~271 deptos matchean; requiere crosswalk). **Sin econometría.**
 6. (Opcional) Afinar la clasificación `tipo_variable == 'otro'`.
 
@@ -284,3 +305,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
 | 15 | 2026-09-16 | Usuario corrió el 03 en Colab directamente (el Drive de la s12 sigue vigente). `provincias_contexto.xlsx` de Colab **idéntico** al local en sus 22 hojas (comparación exacta). Los PNG pesan distinto (Segoe UI no existe en Colab → DejaVu Sans), sin efecto en los datos. |
 | 15b | 2026-09-16 | Nuevo **`04_contexto.ipynb`** (contexto del estudiante en el tiempo): preguntas emparejadas en los 10 operativos de las dos cohortes (tabla por año con etiqueta de redacción y corte de serie), país/sector/ámbito/provincia; RA por año de estudio, egresados (ciclos 2010–2012 de primaria excluidos por cobertura), género y abandono provincial. Primaria 2025: acceso digital y trabajo no identificables (no se imputan). Ejecutado y revisado en local. |
 | 15c | 2026-09-16 | Usuario corrió el 04 en Colab: `contexto_estudiantes.xlsx` **idéntico** al local en sus 16 hojas (comparación exacta). Los cinco notebooks quedan validados en Colab. Cierre: memoria, CONTEXTO, README de datos y memoria global actualizados. |
+| 15d | 2026-09-16 | Pregunta del usuario: ¿qué mejoras de contexto acompañan mejores resultados? Nuevo **`05_asociaciones.ipynb`**: ρ de Spearman entre provincias (cambio vs cambio, frente a pares, nivel vs nivel) para 51 ventanas comparables de cuestionario y RA (docentes, vacantes, titulares), con permutaciones y Benjamini-Hochberg. Resultado: el contexto explica el nivel, no quién mejoró; señal débil en Secundaria (hogar), nada en docentes. Detectado posible cambio de reporte de cargos en Buenos Aires 2023–2025. Ejecutado y revisado en local. |
