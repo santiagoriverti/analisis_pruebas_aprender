@@ -10,7 +10,7 @@
 
 Consolidación y análisis **descriptivo** de las **Pruebas APRENDER** (evaluación, 2016–2025) y la **estadística
 educativa RA** (Relevamiento Anual, 2011–2025) de la Secretaría de Educación de la Nación (Argentina).
-Ocho notebooks, todos ejecutables en Google Colab (00–06 **validados en Colab**; 07 es interactivo, probado en local):
+Ocho notebooks, todos ejecutables en Google Colab (**los ocho validados en Colab**):
 
 | Notebook | Qué hace | Salida |
 |---|---|---|
@@ -41,7 +41,7 @@ Ocho notebooks, todos ejecutables en Google Colab (00–06 **validados en Colab*
 | `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local y Colab (16 hojas de `contexto_estudiantes.xlsx` idénticas, 2026-09-16) |
 | `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño por provincia | ✅ local y Colab (4 hojas de `asociaciones_desempeno.xlsx` idénticas, 2026-09-16) |
 | `06_microdatos.ipynb` — desempeño × contexto por estudiante (microdatos 2024) | ✅ local (.sav de `resultados_aprender/`) y Colab (zip del Drive): 15 hojas de `microdatos_2024.xlsx` idénticas, 2026-09-16 |
-| `07_explorador_microdatos.ipynb` — explorador interactivo de microdatos 2024 | ✅ local (2026-09-16: cálculo, 6 ejemplos y gráficos; los menús solo se prueban en Colab) |
+| `07_explorador_microdatos.ipynb` — explorador interactivo de microdatos 2024 | ✅ local y Colab (2026-09-16: diccionario de 31 variables, cruce inicial y 6 ejemplos idénticos; menús visibles) |
 | Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
 | Más RA · informe · fuentes externas | ⏳ próximos pasos (§8) |
 
@@ -296,7 +296,6 @@ python -m jupyter nbconvert --to notebook --execute --inplace 07_explorador_micr
 
 ## 8. Próximos pasos
 
-0. **Usuario:** probar los menús de `07_explorador_microdatos.ipynb` en Colab y avisar si algo no responde.
 1. **Usuario:** **indagar con fuentes externas** las hipótesis del 03 (sección H): participación en
    APRENDER por provincia, régimen académico en secundaria, días de clase y conflictos docentes, sala de 3 y planes de
    alfabetización; y medir con los microdatos 2024 cuánto pesa la composición del hogar.
@@ -345,3 +344,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 07_explorador_micr
 | 15f | 2026-09-16 | Usuario subió `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` al Drive. Nuevo **`06_microdatos.ipynb`**: desempeño × contexto por estudiante (Secundaria censal, Primaria 3° muestral con NSE de escuela), recursos del hogar, sector a igual contexto, provincias estandarizadas. Control contra agregados con assert (incluido Formosa Primaria 3°). Ejecutado en local con los .sav. |
 | 15g | 2026-09-16 | Usuario corrió el 06 en Colab con los zip del Drive: `microdatos_2024.xlsx` **idéntico** al local en sus 15 hojas (los zip traen las mismas bases que `resultados_aprender/*.sav`). Los siete notebooks quedan validados en Colab. |
 | 15h | 2026-09-16 | Usuario quiere explorar los microdatos 2024 (elige explorador interactivo en Colab, foco en cruces de dos variables). Nuevo **`07_explorador_microdatos.ipynb`**: diccionario, `explorar()`, menús con ipywidgets, descarga de cada cruce y 6 ejemplos. Probado en local (cálculo y gráficos); `ipywidgets` agregado a requirements. |
+| 15i | 2026-09-16 | Usuario corrió el 07 en Colab: diccionario (31 variables), cruce inicial de los menús y los 6 ejemplos **idénticos** al local (valores y n). Menús visibles; interacción y descarga no reportadas. Los ocho notebooks quedan validados en Colab. |

@@ -36,10 +36,11 @@
 - `06_microdatos.ipynb` (22 celdas) ✅ local y Colab (2026-09-16, 15 hojas de `microdatos_2024.xlsx` idénticas): microdatos 2024 por estudiante. En
   Colab lee los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` de *Mi unidad/`pruebas_aprender`* (subidos por el usuario; contenido del zip no inspeccionado
   localmente, pero la corrida en Colab dio idéntico → traen las mismas bases que `resultados_aprender/*.sav`). Commit `fdb84cc`.
-- `07_explorador_microdatos.ipynb` (16 celdas) ✅ local (2026-09-16): explorador con menús (ipywidgets) de los microdatos 2024;
+- `07_explorador_microdatos.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, salidas idénticas): explorador con menús (ipywidgets) de los microdatos 2024;
   `explorar()` + `descargar_ultima()`. Los menús solo funcionan con kernel activo (Colab); nbconvert ejecuta los 6 ejemplos.
   Generado con script temporal (no versionado).
-- Próximo paso sugerido: que el usuario pruebe los menús del 07 en Colab; luego más RA, informe con 01–07 o fuentes externas. Ver `ESTADO.md` §8.
+- Próximo paso sugerido: más RA, informe con 01–07 o fuentes externas. Validar el 07 = comparar el texto de las salidas
+  (diccionario y ejemplos) que pega el usuario contra el notebook ejecutado en local (no genera Excel al final). Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -154,4 +155,4 @@
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
   Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
   Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb` (commit `fdb84cc`); Colab = local → 00–06 validados.
-  Nuevo `07_explorador_microdatos.ipynb` (explorador interactivo de microdatos), probado en local.
+  Nuevo `07_explorador_microdatos.ipynb` (explorador interactivo de microdatos, commit `09f4bba`); Colab = local → 00–07 validados.
