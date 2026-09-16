@@ -55,7 +55,7 @@ La última celda del notebook (sección 10) guarda una copia en **Mi unidad/`pru
 
 ```
 pruebas_aprender/
-├── parquet/                 # eficiente/tipado — lo leen los notebooks 01 y 02
+├── parquet/                 # eficiente/tipado — lo leen los notebooks 01 a 04
 │   ├── ra/ra_<base>.parquet
 │   ├── aprender_long/anio=YYYY/*.parquet
 │   └── diccionario_*.parquet

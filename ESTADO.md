@@ -10,7 +10,7 @@
 
 Consolidación y análisis **descriptivo** de las **Pruebas APRENDER** (evaluación, 2016–2025) y la **estadística
 educativa RA** (Relevamiento Anual, 2011–2025) de la Secretaría de Educación de la Nación (Argentina).
-Cinco notebooks, todos ejecutables en Google Colab (00–03 **validados en Colab**; 04 validado en local):
+Cinco notebooks, todos ejecutables en Google Colab (**los cinco validados en Colab**):
 
 | Notebook | Qué hace | Salida |
 |---|---|---|
@@ -35,7 +35,7 @@ Cinco notebooks, todos ejecutables en Google Colab (00–03 **validados en Colab
 | `01_analisis.ipynb` — trayectorias RA + cohortes APRENDER + catálogo de variables (sin truncar) | ✅ local y Colab (re-validado 2026-09-14 con orden de opciones determinístico: `variables_disponibles` idéntico) |
 | `02_brechas.ipynb` — brechas por sector, ámbito, sector × ámbito y provincia | ✅ local y Colab (8 hojas de `brechas_aprender.xlsx` idénticas, 2026-09-14) |
 | `03_provincias.ipynb` — evolución provincial reciente (Prim 2023→2025, Sec 2022→2024) + contexto | ✅ local y Colab (22 hojas de `provincias_contexto.xlsx` idénticas, 2026-09-16) |
-| `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local (2026-09-16; pendiente correrlo en Colab) |
+| `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local y Colab (16 hojas de `contexto_estudiantes.xlsx` idénticas, 2026-09-16) |
 | Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
 | Brechas por NSE con microdatos 2024 · más RA · informe | ⏳ próximos pasos (§8) |
 
@@ -238,21 +238,19 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
 
 ## 8. Próximos pasos
 
-1. **Usuario:** correr `04_contexto.ipynb` en Colab y pasar `graficos_contexto.zip` para validarlo contra local
-   (comparar `contexto_estudiantes.xlsx` hoja por hoja).
-2. **Usuario:** **indagar con fuentes externas** las hipótesis del 03 (sección H): participación en
+1. **Usuario:** **indagar con fuentes externas** las hipótesis del 03 (sección H): participación en
    APRENDER por provincia, régimen académico en secundaria, días de clase y conflictos docentes, sala de 3 y planes de
    alfabetización; y medir con los microdatos 2024 cuánto pesa la composición del hogar.
    Conseguir el **cuestionario de Primaria 2025** para completar acceso digital y trabajo en el 04 y confirmar si los
    saltos parejos 2023→2025 (madre, libros) son del instrumento.
-3. **Brechas por NSE / contexto con microdatos 2024** (`CONTEXTO.md` §9 y §10.D): Primaria 3° × `NSE_escuela`, jardín,
+2. **Brechas por NSE / contexto con microdatos 2024** (`CONTEXTO.md` §9 y §10.D): Primaria 3° × `NSE_escuela`, jardín,
    libros; Secundaria × educación de la madre, libros, computadora (sin NSE propio). `Base_publica_Ap2024.sav` (117 MB)
    está **solo en la PC local** (no en GitHub/Colab). Solo una foto 2024.
-4. **Más RA** (`CONTEXTO.md` §10.C5–C11): nivel inicial, jornada extendida, comedor, conectividad escolar, migrantes,
+3. **Más RA** (`CONTEXTO.md` §10.C5–C11): nivel inicial, jornada extendida, comedor, conectividad escolar, migrantes,
    discapacidad, vacancia docente, plurigrado; y fotos puntuales de APRENDER (§10.B: pandemia, salud mental, apuestas online).
-5. **Informe** (Word/presentación) con gráficos y tablas de 01 a 04.
-6. (Opcional) Cruce RA↔APRENDER por geografía (~271 deptos matchean; requiere crosswalk). **Sin econometría.**
-7. (Opcional) Afinar la clasificación `tipo_variable == 'otro'`.
+4. **Informe** (Word/presentación) con gráficos y tablas de 01 a 04.
+5. (Opcional) Cruce RA↔APRENDER por geografía (~271 deptos matchean; requiere crosswalk). **Sin econometría.**
+6. (Opcional) Afinar la clasificación `tipo_variable == 'otro'`.
 
 ## 9. Convenciones del proyecto
 
@@ -285,3 +283,4 @@ python -m jupyter nbconvert --to notebook --execute --inplace 04_contexto.ipynb 
 | 14 | 2026-09-15 | Análisis provincial pedido por el usuario (4 afirmaciones): corresponden a los dos últimos operativos; la 4 no se cumple (Mat Sec 16/24). Convergencia, comparación con pares, contexto emparejado (Primaria 2025 sin diccionario: códigos deducidos), jornada RA descartada. Nuevo **`03_provincias.ipynb`** ejecutado y validado en local contra el análisis exploratorio (Δ vs 02 máx 0,009 pp; ρ máx 0,02). |
 | 15 | 2026-09-16 | Usuario corrió el 03 en Colab directamente (el Drive de la s12 sigue vigente). `provincias_contexto.xlsx` de Colab **idéntico** al local en sus 22 hojas (comparación exacta). Los PNG pesan distinto (Segoe UI no existe en Colab → DejaVu Sans), sin efecto en los datos. |
 | 15b | 2026-09-16 | Nuevo **`04_contexto.ipynb`** (contexto del estudiante en el tiempo): preguntas emparejadas en los 10 operativos de las dos cohortes (tabla por año con etiqueta de redacción y corte de serie), país/sector/ámbito/provincia; RA por año de estudio, egresados (ciclos 2010–2012 de primaria excluidos por cobertura), género y abandono provincial. Primaria 2025: acceso digital y trabajo no identificables (no se imputan). Ejecutado y revisado en local. |
+| 15c | 2026-09-16 | Usuario corrió el 04 en Colab: `contexto_estudiantes.xlsx` **idéntico** al local en sus 16 hojas (comparación exacta). Los cinco notebooks quedan validados en Colab. Cierre: memoria, CONTEXTO, README de datos y memoria global actualizados. |

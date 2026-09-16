@@ -13,7 +13,7 @@
 - Local PC INECO: `C:\Users\sriverti\Desktop\INECO\Repositorios\analisis_pruebas_aprender`.
 - El usuario ejecuta en **Google Colab** (badges en README). Drive: *Mi unidad/`pruebas_aprender`* (`parquet/`, `excel/`).
 
-## 2. Estado al cierre (2026-09-15)
+## 2. Estado al cierre (2026-09-16)
 - `00_consolidacion.ipynb` (24 celdas) ✅ — firma **`bdedd07f319c`** (local y Colab). Drive re-consolidado y
   **auditado**: catálogo idéntico, 57 parquet, 18 tablas con contenido idéntico al local.
 - `01_analisis.ipynb` (38 celdas) ✅ — corrido por el usuario en Colab con resultados = local. Sesión 12: orden de
@@ -23,15 +23,14 @@
 - Auditoría del Drive 2026-09-14 (re-corrida del 00 en Colab): 57 parquet, 14 tablas de `excel/` (incl.
   `aprender_desempenos.xlsx` 109.473 filas y los CSV de Cargos Bis / Matrícula por edad) y `catalogo_archivos.csv` idénticos.
 - Commits recientes: `4b53c50` (01: orden determinístico, s12) · `3e491bd` (docs, s12) · `0a0a372` (microdatos y
-  variables de interés, s13) · commit de la sesión 14 (`03_provincias.ipynb` + documentación). Ver `git log`.
+  variables de interés, s13) · `905211f` (`03_provincias.ipynb`, s14) · `2c5b205` (`04_contexto.ipynb`, s15) · commit de cierre de la s15 (docs). Ver `git log`.
 - `03_provincias.ipynb` (26 celdas) ✅ local y Colab (2026-09-16, 22 hojas de `provincias_contexto.xlsx` idénticas): evolución provincial Prim 2023→2025 /
   Sec 2022→2024, comparación con pares (tercil de nivel inicial), contexto (11 indicadores CC Prim + 28 Sec, 5 RA por cohorte),
   fichas; jornada RA descartada. Validado contra el exploratorio (Δ vs 02 máx 0,009 pp; ρ máx 0,02).
-- `04_contexto.ipynb` (21 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: contexto del estudiante en el tiempo
+- `04_contexto.ipynb` (21 celdas) ✅ local y Colab (2026-09-16, 16 hojas de `contexto_estudiantes.xlsx` idénticas): contexto del estudiante en el tiempo
   (16 indicadores Prim + 18 Sec, país/sector/ámbito/provincia, tramos por redacción) + RA por año de estudio, egresados,
   género, abandono provincial. Generado con script temporal (no versionado): modificar con `nbformat` + asserts.
-- Próximo paso sugerido: validar el 04 en Colab; luego brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA
-  o informe. Ver `ESTADO.md` §8.
+- Próximo paso sugerido: brechas por NSE/contexto con microdatos 2024 (§9, §10.D), más RA o informe. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -43,7 +42,7 @@
 | Parquet + Excel legible (umbral 200k filas → CSV) | Cargos Bis 1,46 M y APRENDER 18,7 M filas superan Excel |
 | Motor `calamine` | openpyxl no termina con los APRENDER de 1000+ columnas |
 | `.sav` secundaria 2024 (117 MB) fuera de git | Límite de 100 MB de GitHub (sin LFS) |
-| 00 se corre una vez; 01, 02 y 03 solo leen del Drive | Evitar reconsolidar (~5 min) en cada sesión de Colab |
+| 00 se corre una vez; 01 a 04 solo leen del Drive | Evitar reconsolidar (~5 min) en cada sesión de Colab |
 | Firma de verificación incluye operativos (año, cobertura, nivel, grado) | Detectar cambios de metadatos, no solo de filas |
 | Nivel/grado 2016–2018 completados en el 00 con tabla explícita + assert por edad modal | Los nombres de archivo no los traen; evidencia en los datos |
 | Trayectoria RA rotulada por **ciclo lectivo** (t−1) | Matrícula inicial de Trayectoria(t) ≈ Matrícula(t−1) todos los años |
@@ -53,6 +52,10 @@
 | Notebooks nuevos en archivos separados (02) | Mantener el 01 manejable |
 | 03: período = dos últimos operativos; comparar con provincias de nivel inicial similar (tercil) | Las 4 afirmaciones del usuario refieren a ese período; la convergencia (ρ −0,59 Lengua Prim) sesga la comparación en bruto |
 | 03: contexto por diferencias entre provincias, no por niveles | Varias preguntas cambian redacción/período entre años (el cambio afecta a todas las provincias por igual) |
+| 04: cada año lleva etiqueta de redacción; la serie se corta si cambia o si "No sé" > 10 % | Mostrar solo tramos comparables; la tabla `preguntas_por_anio` documenta la pregunta usada |
+| 04: Primaria 2025 acceso digital y trabajo **sin dato** (no imputar) | Varias preguntas candidatas con perfil provincial casi igual (ρ 0,96); sin diccionario ni cuestionario publicado |
+| 04: egresados de primaria ciclos 2010–2012 excluidos | Provincias que informan 0 egresados (cobertura incompleta) |
+| 04: provincias en orden alfabético en los mapas de calor | Promediar cambios de indicadores con distinto sentido no tiene significado |
 
 ## 4. Números de control (para verificar corridas)
 - Firma 00: `bdedd07f319c` (vieja `c9740263478b` = Drive desactualizado).
@@ -66,8 +69,15 @@
 - Catálogo de variables: RA 744 columnas; APRENDER 5.571 variables / 1.591 preguntas; 102 variables 2025 sin diccionario propio.
 - 03: mejoran Lengua Prim 24/24 (+7,3 a +13,9), Mat Prim 22/24, Lengua Sec 10/24, Mat Sec 16/24. ρ convergencia −0,59 / −0,21 /
   −0,37 / −0,48. Frente a pares (promedio 4 series): Entre Ríos +1,7 (4/4), La Pampa +1,6, Chubut +1,2 … Tucumán −2,1, Neuquén −4,0 (0/4).
+- 04 (país): repitencia Prim 12,1/10,6/9,2/12,8/7,1 · jardín sala 3 Prim 55,0/54,1/62,3/57,6/61,4, Sec 43,4/45,1/43,9/55,5/57,0 ·
+  madre sec. completa+ Sec 59,9/59,6/61,5/64,4/66,6 · internet Sec 84,1/84,2/93,3/95,5 (2017–2024) · computadora Sec
+  85,7/84,2/75,4/73,5 · sobreedad Sec 26,3/22,8/17,7 (2019–2024) · trabaja para empleador Sec 19,7 → 15,6 (2022→2024).
+  RA: abandono secundaria varones 4,42 → 1,37 %, mujeres 3,53 → 1,07 % (ciclos 2010→2024); egresados secundaria
+  247,0 → 461,6 mil. `contexto_estudiantes.xlsx`: 16 hojas; `provincias` 816 filas.
 
 ## 5. Gotchas técnicos (además de los de datos en `ESTADO.md` §6)
+- **Heredoc por la herramienta Bash:** incluso con `<<'EOF'` los `\\` pueden llegar como `\` (rompió `'\\'` y `'\\n'`).
+  Escribir scripts con la herramienta Write y usar `os.path.join` en vez de barras invertidas.
 - **Editar notebooks:** script Python en archivo + `nbformat` con asserts; nunca heredoc sin comillas por bash
   (rompe backticks y `\n`). En PowerShell los here-strings multilínea pueden disparar un hook que bloquea el comando.
 - **Ejecutar:** `python -m jupyter nbconvert --to notebook --execute --inplace <nb> --ExecutePreprocessor.timeout=1800`
@@ -123,4 +133,4 @@
   interés → `CONTEXTO.md` §9–§10; próximos pasos reordenados; `pyreadstat` en requirements.
 - 2026-09-15 (s14): análisis provincial (4 afirmaciones del usuario) → nuevo `03_provincias.ipynb`, validado en local.
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
-  Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), ejecutado y revisado en local.
+  Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.

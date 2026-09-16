@@ -160,7 +160,7 @@ a <10 % de los alumnos se les reasignó el código de colegio → **evitar anál
 
 **Para qué sirven:** cruzar desempeño × contexto **por estudiante** (imposible con los agregados), pero solo en 2024 y con
 pocas variables. Primaria 3° trae `NSE_escuela`; en Secundaria hay que usar proxies (educación de la madre, libros,
-computadora, baños). Para evolución en el tiempo se usan los agregados (notebooks 01 y 02).
+computadora, baños). Para evolución en el tiempo se usan los agregados (notebooks 01 a 04).
 
 ### Riqueza de datos por año (bases agregadas APRENDER)
 
@@ -238,5 +238,5 @@ significado de los códigos; (5) armonizar categorías antes de comparar años.
 - **Secundaria:** Lengua/Matemática × educación de la madre, libros, computadora, horas de estudio, repitencia en primaria.
 - **Primaria 3°:** nivel de lectura × `NSE_escuela`, jardín, libros, lectura en el hogar, gusto por la escuela.
 
-**Prioridad sugerida:** A1–A6 + C1–C4 → notebook 04 "contexto del estudiante en el tiempo"; D → capítulo aparte de brechas
-por NSE/contexto con microdatos 2024.
+**Prioridad sugerida:** A1–A6 + C1–C4 → **implementado en `04_contexto.ipynb`** (2026-09-16; validado en Colab); D → capítulo
+aparte de brechas por NSE/contexto con microdatos 2024 (pendiente). Quedan sin desarrollar A7–A13, B y C5–C11.
