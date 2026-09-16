@@ -33,6 +33,8 @@ graficos_asociaciones.zip
 graficos_microdatos/
 graficos_microdatos.zip
 microdatos_2024_tmp/
+# Tablas descargadas desde el explorador (07)
+cruce_*.xlsx
 
 # ==============================================================
 # Python / Jupyter

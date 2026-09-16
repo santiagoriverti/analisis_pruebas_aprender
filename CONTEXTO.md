@@ -102,7 +102,7 @@ El notebook `00_consolidacion.ipynb` deja todo en `datos_consolidados/`:
 
 Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 
-## 8. Análisis (notebooks 01 a 06)
+## 8. Análisis (notebooks 01 a 07)
 
 - **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
   cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
@@ -121,6 +121,8 @@ Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
   vs nivel; permutaciones + Benjamini-Hochberg. Descriptivo: asociación, no causa.
 - **`06_microdatos.ipynb` — microdatos 2024:** implementa §10.D (desempeño × contexto por estudiante), sector a igual
   contexto y provincias estandarizadas (educación de la madre × libros en Secundaria; NSE de escuela en Primaria 3°).
+- **`07_explorador_microdatos.ipynb` — explorador:** menús (ipywidgets) para cruzar cualquier par de variables de los
+  microdatos 2024 con filtros; `explorar()` y `descargar_ultima()`; diccionario de variables con % ponderados.
 - **Advertencias de interpretación clave:**
   - *Cargos Bis*: `total` mezcla cargos, horas cátedra y módulos → separar por `tipo`.
   - Base *Trayectoria* del año *t* = ciclo lectivo *t−1*.

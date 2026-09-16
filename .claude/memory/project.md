@@ -36,7 +36,10 @@
 - `06_microdatos.ipynb` (22 celdas) ✅ local y Colab (2026-09-16, 15 hojas de `microdatos_2024.xlsx` idénticas): microdatos 2024 por estudiante. En
   Colab lee los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` de *Mi unidad/`pruebas_aprender`* (subidos por el usuario; contenido del zip no inspeccionado
   localmente, pero la corrida en Colab dio idéntico → traen las mismas bases que `resultados_aprender/*.sav`). Commit `fdb84cc`.
-- Próximo paso sugerido: más RA, informe con 01–06 o fuentes externas. Ver `ESTADO.md` §8.
+- `07_explorador_microdatos.ipynb` (16 celdas) ✅ local (2026-09-16): explorador con menús (ipywidgets) de los microdatos 2024;
+  `explorar()` + `descargar_ultima()`. Los menús solo funcionan con kernel activo (Colab); nbconvert ejecuta los 6 ejemplos.
+  Generado con script temporal (no versionado).
+- Próximo paso sugerido: que el usuario pruebe los menús del 07 en Colab; luego más RA, informe con 01–07 o fuentes externas. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -66,6 +69,7 @@
 | 05: el desempeño se mide en los mismos años que la ventana comparable de cada indicador | Evitar mezclar cambios de cuestionario con cambios de desempeño |
 | 06: comparar a igual contexto por estratos y estandarización directa (no regresión) | Pedido descriptivo, sin econometría; se entiende sin modelos |
 | 06: Primaria 3° resume lectura en Niveles IV–V y Lector incipiente–Nivel II | No hay un "nivel esperado" documentado en el repo para la escala de 6 niveles |
+| 07: explorador en Colab con ipywidgets (no tablero web) | Elección del usuario: flexible, sobre los microdatos completos, sin precalcular cruces |
 
 ## 4. Números de control (para verificar corridas)
 - Firma 00: `bdedd07f319c` (vieja `c9740263478b` = Drive desactualizado).
@@ -150,3 +154,4 @@
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
   Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
   Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb` (commit `fdb84cc`); Colab = local → 00–06 validados.
+  Nuevo `07_explorador_microdatos.ipynb` (explorador interactivo de microdatos), probado en local.

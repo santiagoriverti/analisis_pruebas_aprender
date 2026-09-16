@@ -14,6 +14,7 @@ información estadística educativa de la Secretaría de Educación de la Nació
 | **04 · Contexto** (contexto del estudiante en el tiempo) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/04_contexto.ipynb) |
 | **05 · Asociaciones** (¿qué mejoras acompañan mejores resultados?) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/05_asociaciones.ipynb) |
 | **06 · Microdatos 2024** (desempeño y contexto por estudiante) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/06_microdatos.ipynb) |
+| **07 · Explorador de microdatos** (cruces interactivos con menús) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/07_explorador_microdatos.ipynb) |
 
 En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **00** clona el repo, consolida, imprime la **verificación** (`firma`) y guarda en tu Google Drive
@@ -32,13 +33,15 @@ En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 - El **06** usa los **microdatos 2024** (por estudiante): desempeño según el contexto del hogar, sector a igual contexto y
   provincias a igual composición; descarga gráficos + `microdatos_2024.xlsx` (zip). Requiere subir `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip`
   a *Mi unidad/`pruebas_aprender`* (no necesita el 00).
+- El **07** es un **explorador interactivo** de esos mismos microdatos: con menús elegís base, medida, área, variable de filas,
+  variable para abrir y filtros, y ves la tabla ponderada (con *n*) y el gráfico; se puede descargar cada cruce.
 
 **Fuente oficial:**
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
 > cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo), 05 (asociaciones) y 06 (microdatos 2024) funcionando.
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo), 05 (asociaciones), 06 (microdatos 2024) y 07 (explorador de microdatos) funcionando.
 
 ---
 
@@ -149,6 +152,19 @@ El notebook [`06_microdatos.ipynb`](06_microdatos.ipynb) cruza, **estudiante por
 
 [Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/06_microdatos.ipynb).
 
+## Explorador interactivo de microdatos (notebook 07)
+
+El notebook [`07_explorador_microdatos.ipynb`](07_explorador_microdatos.ipynb) permite **cruzar dos variables** de los
+microdatos 2024 con menús (sin programar):
+
+- **Base:** Secundaria 5°/6° o Primaria 3° · **Medida:** % en niveles altos / bajos, puntaje medio, distribución de niveles o
+  % de estudiantes · **Filas** y **abrir por:** contexto del hogar, provincia, sector, ámbito, NSE de la escuela, niveles de
+  desempeño · **Filtros:** provincia, sector, ámbito, NSE.
+- Tabla ponderada con *n* (marca † las celdas con menos de 50 estudiantes), gráfico automático y botón para descargar.
+- También `explorar(...)` para escribir los cruces y 6 ejemplos listos. Usa los mismos zip del Drive que el 06.
+
+[Abrir en Colab](https://colab.research.google.com/github/santiagoriverti/analisis_pruebas_aprender/blob/main/07_explorador_microdatos.ipynb).
+
 ---
 
 ## Estructura del repositorio
@@ -168,6 +184,7 @@ analisis_pruebas_aprender/
 ├── 04_contexto.ipynb          # notebook de contexto del estudiante en el tiempo (APRENDER + RA)
 ├── 05_asociaciones.ipynb      # notebook de asociaciones entre cambios de contexto y de desempeño por provincia
 ├── 06_microdatos.ipynb        # notebook de desempeño × contexto por estudiante (microdatos 2024)
+├── 07_explorador_microdatos.ipynb  # explorador interactivo (menús) de los microdatos 2024
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo

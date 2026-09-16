@@ -1,4 +1,4 @@
-# Dependencias de los notebooks 00_consolidacion, 01_analisis y 02_brechas
+# Dependencias de los notebooks 00 a 07
 pandas>=2.0
 numpy
 pyarrow>=14
@@ -7,3 +7,4 @@ python-calamine>=0.2   # lectura rápida de .xlsx (5-10x vs openpyxl); obligator
 matplotlib>=3.7        # gráficos del 01 y el 02
 jupyter                # incluye nbconvert para ejecutar los notebooks desde la terminal
 pyreadstat>=1.2        # microdatos .sav 2024 (ver CONTEXTO.md §9)
+ipywidgets>=8.0         # menús del explorador de microdatos (07); Colab ya lo trae
