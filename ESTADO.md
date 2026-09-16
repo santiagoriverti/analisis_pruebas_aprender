@@ -41,8 +41,8 @@ Ocho notebooks, todos ejecutables en Google Colab (**los ocho validados en Colab
 | `04_contexto.ipynb` — contexto del estudiante en el tiempo (APRENDER A1–A6 + RA C1–C4) | ✅ local y Colab (16 hojas de `contexto_estudiantes.xlsx` idénticas, 2026-09-16) |
 | `05_asociaciones.ipynb` — asociaciones entre cambios de contexto y de desempeño por provincia | ✅ local y Colab (4 hojas de `asociaciones_desempeno.xlsx` idénticas, 2026-09-16) |
 | `06_microdatos.ipynb` — desempeño × contexto por estudiante (microdatos 2024) | ✅ local (.sav de `resultados_aprender/`) y Colab (zip del Drive): 15 hojas de `microdatos_2024.xlsx` idénticas, 2026-09-16 |
-| `07_explorador_microdatos.ipynb` — explorador interactivo de microdatos 2024 | ✅ local y Colab (2026-09-16: diccionario de 31 variables, cruce inicial y 6 ejemplos idénticos; menús visibles) |
-| Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria | ✅ |
+| `07_explorador_microdatos.ipynb` — explorador interactivo de microdatos 2024 | ✅ local y Colab (2026-09-16: diccionario de 31 variables, cruce inicial y 6 ejemplos idénticos; menús y cambio de base probados por el usuario) |
+| Documentación: README, CONTEXTO, ESTADO, CLAUDE.md, memoria · herramientas en `scripts/` (generadores 04–07, comparador, cuestionario) | ✅ |
 | Más RA · informe · fuentes externas | ⏳ próximos pasos (§8) |
 
 **Firma de referencia de la consolidación: `bdedd07f319c`**
@@ -82,8 +82,12 @@ python -m jupyter nbconvert --to notebook --execute --inplace 07_explorador_micr
 - Los datos crudos (`resultados_aprender/`, 156 `.xlsx`) **están versionados**: el clone los trae.
 - **No** se versionan `Base_publica_Ap2024.sav` (117 MB, supera el límite de GitHub) ni la salida pesada
   (`datos_consolidados/ra/`, `aprender_long/`, `*.parquet`) ni las carpetas/zips de gráficos.
+- **06 y 07 en local:** copiar `Base_publica_Ap2024.sav` (o los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip`) a `resultados_aprender/`.
+  Sin eso fallan con un mensaje claro. En Colab no hace falta: leen los zip del Drive.
+- **Herramientas (`scripts/`):** `generar_0X_*.py` (notebooks 04–07; `--debug` para probar), `comparar_excel.py` (validar
+  corridas de Colab), `listar_cuestionario.py` (códigos de preguntas por año). Detalle en `scripts/README.md`.
 - **Motor de lectura obligatorio:** `python-calamine` (openpyxl no termina de leer los APRENDER de 1000+ columnas).
-- Tiempos locales: 00 ≈ 5 min · 01 ≈ 2,5 min · 02 ≈ 20 s · 03 ≈ 40 s · 04 ≈ 1,3 min · 05 ≈ 30 s · 06 ≈ 1 min. En local, 01 a 05 leen de `datos_consolidados/` y el 06 de `resultados_aprender/*.sav`.
+- Tiempos locales: 00 ≈ 5 min · 01 ≈ 2,5 min · 02 ≈ 20 s · 03 ≈ 40 s · 04 ≈ 1,3 min · 05 ≈ 30 s · 06 ≈ 1 min · 07 ≈ 1 min. En local, 01 a 05 leen de `datos_consolidados/` y el 06/07 de `resultados_aprender/`.
 
 ## 4. Dónde quedan los resultados
 
@@ -344,4 +348,5 @@ python -m jupyter nbconvert --to notebook --execute --inplace 07_explorador_micr
 | 15f | 2026-09-16 | Usuario subió `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` al Drive. Nuevo **`06_microdatos.ipynb`**: desempeño × contexto por estudiante (Secundaria censal, Primaria 3° muestral con NSE de escuela), recursos del hogar, sector a igual contexto, provincias estandarizadas. Control contra agregados con assert (incluido Formosa Primaria 3°). Ejecutado en local con los .sav. |
 | 15g | 2026-09-16 | Usuario corrió el 06 en Colab con los zip del Drive: `microdatos_2024.xlsx` **idéntico** al local en sus 15 hojas (los zip traen las mismas bases que `resultados_aprender/*.sav`). Los siete notebooks quedan validados en Colab. |
 | 15h | 2026-09-16 | Usuario quiere explorar los microdatos 2024 (elige explorador interactivo en Colab, foco en cruces de dos variables). Nuevo **`07_explorador_microdatos.ipynb`**: diccionario, `explorar()`, menús con ipywidgets, descarga de cada cruce y 6 ejemplos. Probado en local (cálculo y gráficos); `ipywidgets` agregado a requirements. |
-| 15i | 2026-09-16 | Usuario corrió el 07 en Colab: diccionario (31 variables), cruce inicial de los menús y los 6 ejemplos **idénticos** al local (valores y n). Menús visibles; interacción y descarga no reportadas. Los ocho notebooks quedan validados en Colab. |
+| 15i | 2026-09-16 | Usuario corrió el 07 en Colab: diccionario (31 variables), cruce inicial de los menús y los 6 ejemplos **idénticos** al local (valores y n). Menús y cambio de base probados por el usuario. Los ocho notebooks quedan validados en Colab. |
+| 15j | 2026-09-16 | Cierre para traspaso: generadores de los notebooks 04–07, comparador de Excel y listado del cuestionario versionados en `scripts/` (rutas relativas; verificado que regeneran exactamente los notebooks); `.gitignore` para zips de microdatos en `resultados_aprender/`; instrucciones para PC nueva (microdatos locales) en README, CLAUDE y ESTADO; memoria actualizada. |

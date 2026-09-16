@@ -6,6 +6,8 @@
 # de 100 MB por archivo de GitHub. Se conserva en local pero no
 # se versiona. El resto de las bases sí se suben.
 resultados_aprender/Base_publica_Ap2024.sav
+# Zips oficiales de microdatos 2024 (si se copian a resultados_aprender/ para correr 06/07 en local)
+resultados_aprender/*icrodatos*.zip
 
 # Si en el futuro se agregan otros .sav grandes, descomentar:
 # *.sav
@@ -35,6 +37,8 @@ graficos_microdatos.zip
 microdatos_2024_tmp/
 # Tablas descargadas desde el explorador (07)
 cruce_*.xlsx
+# Salida de scripts/listar_cuestionario.py
+cuestionario_por_anio.*
 
 # ==============================================================
 # Python / Jupyter

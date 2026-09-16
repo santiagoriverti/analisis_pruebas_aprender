@@ -29,16 +29,17 @@
   fichas; jornada RA descartada. Validado contra el exploratorio (Δ vs 02 máx 0,009 pp; ρ máx 0,02).
 - `04_contexto.ipynb` (21 celdas) ✅ local y Colab (2026-09-16, 16 hojas de `contexto_estudiantes.xlsx` idénticas): contexto del estudiante en el tiempo
   (16 indicadores Prim + 18 Sec, país/sector/ámbito/provincia, tramos por redacción) + RA por año de estudio, egresados,
-  género, abandono provincial. Generado con script temporal (no versionado): modificar con `nbformat` + asserts.
+  género, abandono provincial. Generador: `scripts/generar_04_contexto.py`.
 - `05_asociaciones.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, 4 hojas de `asociaciones_desempeno.xlsx` idénticas): ρ de Spearman entre provincias del
   cambio de contexto (cuestionario + RA docentes) y del cambio de desempeño; 102 comparaciones, permutaciones + BH.
-  Generado con script temporal (no versionado); commit `ff9ba04`.
+  Generador: `scripts/generar_05_asociaciones.py`; commit `ff9ba04`.
 - `06_microdatos.ipynb` (22 celdas) ✅ local y Colab (2026-09-16, 15 hojas de `microdatos_2024.xlsx` idénticas): microdatos 2024 por estudiante. En
   Colab lee los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` de *Mi unidad/`pruebas_aprender`* (subidos por el usuario; contenido del zip no inspeccionado
   localmente, pero la corrida en Colab dio idéntico → traen las mismas bases que `resultados_aprender/*.sav`). Commit `fdb84cc`.
+  Generador: `scripts/generar_06_microdatos.py`.
 - `07_explorador_microdatos.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, salidas idénticas): explorador con menús (ipywidgets) de los microdatos 2024;
-  `explorar()` + `descargar_ultima()`. Los menús solo funcionan con kernel activo (Colab); nbconvert ejecuta los 6 ejemplos.
-  Generado con script temporal (no versionado).
+  `explorar()` + `descargar_ultima()`. Los menús solo funcionan con kernel activo (Colab; el usuario los probó); nbconvert ejecuta los 6 ejemplos.
+  Generador: `scripts/generar_07_explorador_microdatos.py`.
 - Próximo paso sugerido: más RA, informe con 01–07 o fuentes externas. Validar el 07 = comparar el texto de las salidas
   (diccionario y ejemplos) que pega el usuario contra el notebook ejecutado en local (no genera Excel al final). Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
@@ -118,7 +119,8 @@
 - **Primaria 2025 CC renumerado:** `ap06` jardín, `ap07` repitencia, `ap09` viaje, `ap24` libros, `ap40a–c` autopercepción
   (deducidos por opciones); no hay clima escolar. **Jornada completa/extendida del RA por provincia no es confiable.**
 - **Gráficos (03):** paleta validada con el validador de la skill dataviz (azul/rojo divergente, azul/naranja categórico).
-- **El 03 se generó con un script temporal (no versionado):** para modificarlo, editar sus celdas con `nbformat` + asserts
+- **Generadores versionados en `scripts/` solo para 04–07.** El 03 se generó con un script temporal que no se conservó:
+  para modificarlo, editar sus celdas con `nbformat` + asserts
   como el resto; los indicadores de contexto están en `SPECS` (celda de la sección D) y fallan con assert si una opción no existe.
 - **04 · agregar/cambiar indicadores:** editar `IND` (celda de la sección 1): por año `S('código', 'etiqueta de redacción',
   num={...} | excluir={...} | prefijo='Ed_Madre_' | solo_nosabe=True)`; asserts fallan si una opción no existe. Nombres
@@ -152,6 +154,7 @@
   interés → `CONTEXTO.md` §9–§10; próximos pasos reordenados; `pyreadstat` en requirements.
 - 2026-09-15 (s14): análisis provincial (4 afirmaciones del usuario) → nuevo `03_provincias.ipynb`, validado en local.
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
+  Cierre: `scripts/` (generadores 04–07 verificados idénticos a los notebooks, `comparar_excel.py`, `listar_cuestionario.py`).
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
   Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
   Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb` (commit `fdb84cc`); Colab = local → 00–06 validados.

@@ -40,8 +40,9 @@ En Colab: abrí el badge y elegí **Entorno de ejecución → Ejecutar todo**.
 https://www.argentina.gob.ar/educacion/evaluacion-e-informacion-educativa/datos-abiertos-de-la-secretaria-de-educacion
 
 > **¿Retomás el proyecto en otra PC o sesión?** Empezá por **[ESTADO.md](ESTADO.md)**: estado actual,
-> cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos.
-> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo), 05 (asociaciones), 06 (microdatos 2024) y 07 (explorador de microdatos) funcionando.
+> cómo instalar y correr, dónde quedan los resultados, decisiones y próximos pasos. Herramientas de mantenimiento
+> (generadores de notebooks y validación de corridas de Colab) en [`scripts/`](scripts/README.md).
+> Estado: consolidación **completa y validada** (firma de referencia `bdedd07f319c`) , notebooks 01 (trayectorias), 02 (brechas), 03 (provincias y contexto), 04 (contexto en el tiempo), 05 (asociaciones), 06 (microdatos 2024) y 07 (explorador de microdatos) funcionando y **validados en Colab** (2026-09-16).
 
 ---
 
@@ -185,6 +186,7 @@ analisis_pruebas_aprender/
 ├── 05_asociaciones.ipynb      # notebook de asociaciones entre cambios de contexto y de desempeño por provincia
 ├── 06_microdatos.ipynb        # notebook de desempeño × contexto por estudiante (microdatos 2024)
 ├── 07_explorador_microdatos.ipynb  # explorador interactivo (menús) de los microdatos 2024
+├── scripts/                   # generadores de los notebooks 04–07, comparador de Excel (Colab vs local), listado del cuestionario
 ├── .claude/
 │   └── memory/
 │       └── project.md         # memoria de proyecto para sesiones de trabajo
@@ -262,7 +264,9 @@ Cobertura por año (resumen):
 > con la edad más frecuente declarada por los estudiantes (11 años → 6° grado; 17 años → 5-6° año).
 
 ### 3. Microdatos públicos y documentación
-- `Base_publica_Ap2024.sav` — microdato individual secundaria 2024 (**117 MB, no versionado**).
+- `Base_publica_Ap2024.sav` — microdato individual secundaria 2024 (**117 MB, no versionado**). Para correr 06/07 en una PC
+  nueva: copiar ese `.sav` o los zip oficiales `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` a `resultados_aprender/`.
+  En Colab, los zip van en *Mi unidad/`pruebas_aprender`*.
 - `Base_publica_prim_Ap2024.sav` — microdato individual primaria 2024 (5,5 MB).
 - `Diccionario ... .xlsx` — diccionarios de variables de las bases.
 - `Advertencia metodológica*.pdf`, `Notas metodologicas ... .pdf` — documentación oficial.

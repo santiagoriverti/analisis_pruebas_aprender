@@ -104,6 +104,7 @@ Detalle de esquemas y ejemplos de uso en `datos_consolidados/README.md`.
 
 ## 8. Análisis (notebooks 01 a 07)
 
+- Para ubicar códigos de preguntas entre años: `python scripts/listar_cuestionario.py` (ver `scripts/README.md`).
 - **`01_analisis.ipynb` — trayectorias:** series RA (matrícula, repitencia y abandono por **ciclo lectivo**,
   cargos docentes, horas y módulos) y desempeño APRENDER en las cohortes comparables (Primaria 6° Censal
   2016/2018/2021/2023/2025; Secundaria 5-6° Censal 2016/2017/2019/2022/2024). Genera el catálogo
@@ -140,7 +141,7 @@ en el escritorio virtual de la Subsecretaría). Leer con `pyreadstat.read_sav` (
 
 | Archivo | Operativo | Tamaño | Filas × columnas | En git |
 |---|---|---|---|---|
-| `Base_publica_Ap2024.sav` | Secundaria 5-6° año, censal | 117 MB | 386.882 × 22 | **No** (límite de GitHub) |
+| `Base_publica_Ap2024.sav` | Secundaria 5-6° año, censal | 117 MB | 386.882 × 22 | **No** (límite de GitHub; en Colab se lee del zip oficial en el Drive) |
 | `Base_publica_prim_Ap2024.sav` | Primaria 3° grado (alfabetización), muestral | 5,6 MB | 91.264 × 24 | Sí |
 
 **Secundaria** (sin etiquetas SPSS; los valores ya vienen como texto):
