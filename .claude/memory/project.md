@@ -33,10 +33,10 @@
 - `05_asociaciones.ipynb` (16 celdas) ✅ local y Colab (2026-09-16, 4 hojas de `asociaciones_desempeno.xlsx` idénticas): ρ de Spearman entre provincias del
   cambio de contexto (cuestionario + RA docentes) y del cambio de desempeño; 102 comparaciones, permutaciones + BH.
   Generado con script temporal (no versionado); commit `ff9ba04`.
-- `06_microdatos.ipynb` (22 celdas) ✅ local (2026-09-16), **falta correrlo en Colab**: microdatos 2024 por estudiante. En
+- `06_microdatos.ipynb` (22 celdas) ✅ local y Colab (2026-09-16, 15 hojas de `microdatos_2024.xlsx` idénticas): microdatos 2024 por estudiante. En
   Colab lee los zip `2024 Base de microdatos Aprender primaria.zip` y `2024 Base de microdatos Aprender secundaria.zip` de *Mi unidad/`pruebas_aprender`* (subidos por el usuario; contenido del zip no inspeccionado
-  localmente: se asume un `.sav` adentro, el código lo busca y falla con mensaje si no). Generado con script temporal.
-- Próximo paso sugerido: validar el 06 en Colab; más RA, informe con 01–06 o fuentes externas. Ver `ESTADO.md` §8.
+  localmente, pero la corrida en Colab dio idéntico → traen las mismas bases que `resultados_aprender/*.sav`). Commit `fdb84cc`.
+- Próximo paso sugerido: más RA, informe con 01–06 o fuentes externas. Ver `ESTADO.md` §8.
 - Microdatos (sesión 13): **solo 2024**. Secundaria `Base_publica_Ap2024.sav` 386.882 × 22 (sin NSE, sin etiquetas SPSS,
   117 MB solo local); Primaria 3° `Base_publica_prim_Ap2024.sav` 91.264 × 24 (con `NSE_escuela`). % ponderados = agregados.
   2024 no es el año con más datos agregados (2016: 1.225 variables vs 657); solo suma los microdatos.
@@ -149,4 +149,4 @@
 - 2026-09-16 (s15): usuario corrió el 03 en Colab (sin re-correr el 00); Excel idéntico al local → 00–03 validados en Colab.
   Nuevo `04_contexto.ipynb` (contexto del estudiante en el tiempo), commit `2c5b205`; corrido en Colab: Excel idéntico → 00–04 validados.
   Nuevo `05_asociaciones.ipynb` (¿qué mejoras de contexto acompañan mejores resultados?), commit `ff9ba04`; Colab = local → 00–05 validados.
-  Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb`, ejecutado en local.
+  Usuario subió los zip de microdatos al Drive → nuevo `06_microdatos.ipynb` (commit `fdb84cc`); Colab = local → 00–06 validados.
